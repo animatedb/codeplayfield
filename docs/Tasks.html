@@ -1,0 +1,243 @@
+<html>
+
+
+<h2><a name="installpython">Install Python</a></h2>
+Python may already be installed. This software requires Python 3, so Ubuntu
+requires the "python3" command must be used to run the software.
+<p>If you don't have it, it can be installed from 
+<a href="https://www.python.org/">www.python.org</a>.
+</p>
+
+<h2><a name="installpackages">Install Packages</a></h2>
+There is an "install.sh" script that can be used to install
+all packages. This may not work on all systems. Typically it is not
+too difficult to search the internet to find what to install for your
+operating system.
+
+<h3><a name="installpygame">Install pygame</a></h3>
+For Ubuntu, open a terminal and run:
+<pre><code>
+    $ sudo apt-get install python3-pygame
+</code></pre>
+Or follow the instructions here:
+<a href="https://www.pygame.org/wiki/GettingStarted">www.pygame.org/wiki/GettingStarted</a>
+
+<h3><a name="installopencv">Install opencv</a></h3>
+This is only required for programs in the pictures folder.
+<p>For Ubuntu, open a terminal and run:</p>
+<pre><code>
+    $ sudo apt-get install python3-opencv
+</code></pre>
+Or follow the instructions here:
+<a href="https://docs.opencv.org/master/d2/de6/tutorial_py_setup_in_ubuntu.html">
+https://docs.opencv.org/master/d2/de6/tutorial_py_setup_in_ubuntu.html</a>
+<br>Or here:
+<a href="https://docs.opencv.org/master/d5/de5/tutorial_py_setup_in_windows.html">
+https://docs.opencv.org/master/d5/de5/tutorial_py_setup_in_windows.html</a>
+
+<h2><a name="openterminal">Open a Command Console or Terminal</a></h2>
+For Ubuntu:
+<ul>
+<li>Click on the "Files" icon (File Folder Viewer) on the left side of the screen.
+Or run Activities and enter "Nautilus".</li>
+<li>Click on folders in the "explorer" </li>
+<li>Once the correct folder is selected, then right click with the mouse and
+select, "Open in Terminal"</li>
+<li>Then the prompt is displayed. If there are instructions such as, "$ ls *",
+the "$" part should not be entered since it is indicating the prompt that
+is displayed.</li>
+</ul>
+
+<h2><a name="runningprograms">Running Programs</a></h2>
+Python programs can be run from a terminal.
+First open a <a href="#openterminal">terminal</a>, and then
+enter the text required to run the program. In the <a href="Overview.html#demos">Demos</a>
+documentation, the text to run is shown.
+<p>
+Another way is to right click on the file that you would like to edit and run,
+then select "Open With Other Application", then select "Idle". Then select "Run/Run Module" or the key F5.
+</p>
+<p>
+Another option is that there is a shell script called "runDemos.sh".
+For Ubuntu:<br>
+Double click on the file and the script may run, or a message
+may appear asking to run the script. Running the script will show
+all demos, but this does require that the packages are installed first.
+</p>
+
+
+<h2><a name="editingprograms">Editing Programs</a></h2>
+Editing Python programs can be done with any text editor. The default
+Python editor is "Idle" and has colored text so that it is easier to
+read.
+<p></p>
+For Ubuntu:
+<ul>
+<li>Right click on a .py file.</li>
+<li>Select "Open with Other Application"</li>
+<li>Select "Idle"</li>
+</ul>
+
+<h2><a name="solvingproblems">Solving Problems</a></h2>
+Often searching on the internet will help to find out how
+to solve a problem. Other types of problems require
+<a href="#debuggingprograms">debugging</a>.
+
+<h2><a name="debuggingprograms">Debugging Programs</a></h2>
+It is possible to debug Python programs by inserting statements
+into the program. Some examples are:
+<table border="1">
+<tr><td>Statement</td><td>Description</td></tr>
+<tr><td>print('1')</td><td>This will print a "1" to the terminal when the print
+statement is run.</td></tr>
+<tr><td>print(object)</td><td>This will print the content values of an object or variable</td></tr>
+<tr><td>print(dir(object))</td><td>This will print the methods or members of an object or variable</td></tr>
+<tr><td>print(type(object))</td><td>This will print the type of an object or variable</td></tr>
+<tr><td>print('place1', str(obj))</td><td>This will print 'place1' and information about an object.</td></tr>
+</table>
+<p>
+There are some Python editors that allow debugging. Search the internet
+for "Python IDE" to find different editors.
+</p>
+
+<h2><a name="grabscreenshot">Grab a Screenshot (Image)</a></h2>
+An image can be saved of the current screen or window.
+<p></p>
+For Ubuntu:
+<ul>
+<li>Click on the "Activities" menu.</li>
+<li>Enter "Screenshot" in the "Type to Search" box.</li>
+<li>Click "Take Screenshot"</li>
+</ul>
+
+<h2><a name="grabscreencast">Grab a Screencast (Video)</a></h2>
+A movie can be saved of the activities during some animation, or selections on the screen.
+For Ubuntu:
+<ul>
+<li>Click on the "Activities" menu.</li>
+<li>Enter "Screenshot" in the "Type to Search" box.</li>
+<li>Enter a delay of a few seconds.</li>
+<li>Press Ctrl-Alt-Shift-R to start recording.</li>
+<li>Run your program.</li>
+<li>Press Ctrl-Alt-Shift-R to stop recording.</li>
+<li>The output file is saved in home directory in the "Videos" folder.</li>
+</ul>
+
+<h2><a name="editimage">Edit Image</a></h2>
+Install <a href="#installgimp">Gimp</a> using Synaptic or command line.<br/>
+<p>
+To change the size of an image:
+<ul>
+<li>Open or drag and drop the file in Gimp.</li>
+<li>Select Image/Scale Image</li>
+<li>Enter the width. The aspect ratio is preserved unless the chain link is clicked</li>
+<li>Save the image using File/Overwrite or Fille/Export As</li>
+</ul>
+To grab part of an image:
+<ul>
+<li>Open or drag and drop the file in Gimp.</li>
+<li>Select Tools/Selection Tools/Rectangle Select</li>
+<li>Select an area on the image by clicking at a location, pressing the mouse button down
+and moving the mouse, then releasing the button</li>
+<li>Select Image/Crop to Selection</li>
+<li>Save the image using File/Overwrite or Fille/Export As</li>
+</ul>
+</p>
+
+<h2><a name="editsound">Edit Sound</a></h2>
+Install "Audacity" using Synaptic or command line.
+It is possible to extract a small part of a sound from another sound file.
+
+
+<h2><a name="installgimp">Install Gimp</a></h2>
+For Ubuntu:<br/>
+Install Gimp using Synaptic or command line.<br/>
+Install Ubuntu Restricted Extras using Synaptic. Select Settings/Repositories. Then select
+"Software restricted by copyright or legal issues(multiverse)".
+Search for "ubuntu-restricted-extras" and select it. Then Apply.
+<p></p>
+Install Ubuntu Restricted Extras from command line:
+<pre><code>
+  sudo add-apt-repository multiverse
+  sudo apt install ubuntu-restricted-extras
+</code></pre>
+
+<h2><a name="editvideogimp">Edit Video with Gimp</a></h2>
+Install <a href="#installgimp">"Gimp"</a> using Synaptic or command line.<br/>
+<p></p>
+Gimp can set the transparency of parts of the image. It can also remove frames when there are more
+than what is needed.
+
+<h3>Extract Frames</h3>
+This shows how to manually extract frames. The frames can be also automatically
+extracted using <a href="#editvideo">WinFF or ffmpeg</a>.
+Sometimes Gimp will display an error about an unknown file type. One solution is to use
+<a href="#editvideo">WinFF or ffmpeg</a>.
+This example shows how the game/airport-data/BirdSource files were modified.
+The source video was retrieved from https://www.pexels.com/search/videos/bird/.
+<ul>
+<li>Use Crop to get a limited time in the video.</li>
+<li>Use Extract to see the frames/convert to jpg images.</li>
+<li>Manually view and scroll through images to see where the good frames are.</li>
+<li>Looks like starting at frame 62. A close ending frame is 103.</li>
+<li>103-62=41.</li>
+<li>Get 8 frames using 41/8= every 5th frame, so 62, 67, 72, 77, 82, 87, 92, 97</li>
+</ul>
+
+<h3>Add Transparency</h3>
+
+<ul>
+<li>Add transparency to bird using Gimp</li>
+<ul>
+	<li>Select menu Tools/Selection Tools/By Color Select</li>
+	<li>click on sky.</li>
+	<li>Select Layer/Transparency/Add Alpha Channel</li>
+	<li>Select Edit/Clear</li>
+	<li>Select menu Tools/Selection Tools/Rectangle select and select small area around image.</li>
+	<li>select size using Tool Options dialog</li>
+	<li>Select Image/Crop To Selection</li>
+	<li>Select File/Export As, then save filename as bmp?</li>
+	<li>Set name to bird-0062-trans.bmp</li>
+	<li>Do above process for all images (Use Close View to restart)</li>
+</ul>
+<li>Add transparency to bug/spider</li>
+<ul>
+	<li>Use View/Zoom to make the image larger and easier to edit.</li>
+	<li>Select Tools/Selection Tools and choose Rectangle Select, Fuzzy Select and
+	By Color Select</li>
+</ul>
+
+</ul>
+
+
+<h2><a name="editvideo">Edit Video with WinFF or ffmpeg</a></h2>
+Install "WinFF" using Synaptic or command line.
+A video can also be <a href="#editvideogimp">edited in Gimp</a> to change individual frames.
+<h3>Cut and Crop</h3>
+<ul>
+<li>Run WinFF</li>
+<li>Click the Options. This will show extra tabs in the screen.</li>
+<li>Use the Crop tab to indicate how many pixels to remove from each side.</li>
+<li>Use the Time tab to select when to start keeping the video and how much to keep.</li>
+<li>Use Preview to view the changes.</li>
+<li>Use Convert to save the file in the home directory.</li>
+</ul>
+It seems like both Crop and changing the video size don't work at the same time.
+So load the already cropped video, and use the Video tab to set the output size.
+<p></p>
+<h3>Set Image Size</h3>
+A complete example for the game/bug-data/Bug-Source/Bug.mp4 is:
+<ul>
+<li>Video: Frame Rate=5, Video Size=100 X -1</li>
+<li>Time: Seek to=5, Time to Record=6</li>
+</ul>
+<p></p>
+
+<h3>Extract Frames</h3>
+To extract frames, first open a <a href="#openterminal">terminal</a>, and then run:
+<pre><code>
+/usr/bin/ffmpeg -i "/<i>dir</i>/game/bug-data/Bug.mp4" /<i>dir</i>/game/bug-data/Bug/frame_%03d.png
+</code></pre>
+The <i>dir</i> in italics must be replaced with your actual folder.
+</html>
+
