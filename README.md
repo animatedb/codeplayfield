@@ -5,22 +5,10 @@ A visual environment to learn programming using Python 3.
 
 ## Contents
 
- - [Overview](#overview)
- - [Download](#download)
- - [Quick start](#quick-start)
+ - [Overview](https://animatedb.github.io/codeplayfield/Overview.html)
+ - [Download](https://github.com/animatedb/codeplayfield/releases)
  - [Project Goals](#project-goals)
- - [Other Documentation](#other-documentation)
- - [License](#license)
 
-
-## Overview
-
-[https://animatedb.github.io/codeplayfield/Overview.html]
-
-## Download
-
-Download the package from the [releases]
-(https://github.com/animatedb/codeplayfield/releases).
 
 ## Project Goals
 
