@@ -2,20 +2,29 @@
 
 
 <h2><a name="installpython">Install Python</a></h2>
-Python may already be installed. This software requires Python 3, so Ubuntu
-requires the "python3" command must be used to run the software.
+Python may already be installed. 
+<p>For Windows, Python can be downloaded from here <a href="https://www.python.org/downloads/windows/">
+https://www.python.org/downloads/windows/</a>. Typically the best one is Python 3 in Stable Releases
+and is 64-bit.
+</p>
+<p>
+For Ubuntu, Python 3 is typically already installed.
+Ubuntu requires the "python3" command to run the software.
+</p>
 <p>If you don't have it, it can be installed from 
 <a href="https://www.python.org/">www.python.org</a>.
 </p>
 
 <h2><a name="installpackages">Install Packages</a></h2>
-There is an "install.sh" script that can be used to install
-all packages. This may not work on all systems. Typically it is not
-too difficult to search the internet to find what to install for your
-operating system.
+Install pip using instructions here <a href=https://pip.pypa.io/en/stable/installing/>
+https://pip.pypa.io/en/stable/installing/</a>
 
 <h3><a name="installpygame">Install pygame</a></h3>
 For Ubuntu, open a terminal and run:
+<pre><code>
+    $ pip3 install python3-pygame
+</code></pre>
+Or
 <pre><code>
     $ sudo apt-get install python3-pygame
 </code></pre>
@@ -25,6 +34,10 @@ Or follow the instructions here:
 <h3><a name="installopencv">Install opencv</a></h3>
 This is only required for programs in the pictures folder.
 <p>For Ubuntu, open a terminal and run:</p>
+<pre><code>
+    $ pip3 install python3-opencv
+</code></pre>
+Or
 <pre><code>
     $ sudo apt-get install python3-opencv
 </code></pre>

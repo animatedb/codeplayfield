@@ -6,7 +6,7 @@ A visual environment to learn programming using Python 3.
 ## Contents
 
  - [Overview](https://animatedb.github.io/codeplayfield/Overview.html)
- - [Run with JupyterLab](#jupyter)
+ - [Run with Jupyter](#jupyter)
  - [Download](https://github.com/animatedb/codeplayfield/releases)
  - [Project Goals](#project-goals)
 
