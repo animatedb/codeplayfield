@@ -1,0 +1,9 @@
+jupyter problems
+
+- The user interface is difficult for kids. How will they know "Restart the kernal"?
+
+- loading a python file to edit loads it once, then doesn't update if the
+  code on disk is modified.
+
+- No way to embed a video cleanly
+
