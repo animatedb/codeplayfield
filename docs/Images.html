@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Images</title>
+
+<h1 id="Images">Images</h1>
+<p>This describes how images work.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+
+<h2 id="Resizing-or-Scaling">Resizing or Scaling</h2>
+
+<p>The size of the image below is 260 pixels in the X (across the screen/width) direction and
+is 140 pixels in the Y (up and down/height) direction. Sometimes this is shown as:</p>
+<ul>
+<li>260 by 140</li>
+<li>260 x 140</li>
+</ul>
+<p><br>
+Usually the width (X) is first, then the height (Y).
+<br>
+Notes:</p>
+<ul>
+    <li>A "pixel" is a "picture element". It is a very small part of the picture.
+        This is described below.</li>
+</ul><p><br>
+<img src="../docs/images/1-pets.jpg" style="width:260px !important;height:140px;" /></p>
+<p>It is possible to "scale" this image by changing the width. The width in this image was set to 500. Notice that the height didn't change.
+<br>
+Notes:</p>
+<ul>
+<li>The ratio between width and height is called "aspect ratio".</li>
+<li>The image looks a little fuzzier. This is because the original image is smaller and does not have many pixels.</li>
+</ul>
+<p><br>
+<img src="../docs/images/1-pets.jpg" style="width:500px !important;height:140px;" /></p>
+<p><p>
+Scaling can be performed using the following:
+</p></p>
+<ul>
+    <li>HTML - &lt;img src="../docs/images/1-pets.jpg" width=300&gt; is actually scaling.
+    <li><a href="../docs/Tasks.html#editimage">Edit using Gimp</a></li>
+    <li>Python
+        <ul>
+            <li>pygame - See pygame.transform.scale()</li>
+            <li>opencv - See cv2.resize()</li>
+        </ul>
+    </li>
+</ul>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Pixels">Pixels</h2><p>The following image is part of the original image above and shows 40 by 50 pixels.
+<br><img src="../docs/images/1-pets-cropped-dog.png" width="50"/>
+<br>
+Here is what the pixels look like if they are shown larger. So the pixels are the small squares. Televisions and phones have pixels, but they can be very small.
+<br><img src="../docs/images/1-pets-cropped-dog.png" width="300"/><br></p>
+
+</div>
+</div>
+</body>
+
+
+
+
+
+
+
+</html>
