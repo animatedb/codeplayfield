@@ -1,9 +1,52 @@
 jupyter problems
 
 - The user interface is difficult for kids. How will they know "Restart the kernal"?
+  Then the thing where there are modes for fields, etc. Could be confusing.
+  There really needs to be a better editor.
+  I think there is a way to add buttons to markup, but it is not intrinsic in
+  Jupyter.
+
+- For kids, should have an easy way to select modifications to the code.
+  This may be possible in Jupyter, but I don't know yet. Looks like there
+  probably is using ipywidgets.
 
 - loading a python file to edit loads it once, then doesn't update if the
   code on disk is modified.
 
-- No way to embed a video cleanly
+- No way to embed a video cleanly. This requires running code. Browsers
+  allow right click on video to play.
+
+- Would be nice if it ran the static checker mypy.
+
+- Hyperlinks with url and section don't work in jupyter lab, but do work in jupyter-notebook.
+  They don't use the same code base?
+
+- It is possible to use the markdown or the html img or div tags, but none of these
+  allow setting width independent of height.
+  This is in every exported html.
+	.jp-RenderedHTMLCommon img,
+	.jp-RenderedImage img,
+	.jp-RenderedHTMLCommon svg,
+	.jp-RenderedSVG svg {
+	  max-width: 100%;
+	  height: auto;
+	}
+  https://ipywidgets.readthedocs.io/en/latest/examples/Widget%20Styling.html#Image-layout-and-sizing
+  
+  Solution (use !important):
+	<img src="../docs/images/1-pets.jpg" style="width:100px !important;height:400px;" />
+
+- Markdown is limited. Using a list with '*' does not allow html in the list
+  element for example if you wanted to set image width and height, or an html
+  reference with an url and section. It is easier to just use <ul><li>...
+
+- Editor - sometimes shift delete doesn't work? Ctrl-X always seems to work.
+
+
+# Install ipywidgets using pip
+import sys
+!{sys.executable} -m pip install ipywidgets
+
+import ipywidgets as ipw
+ipw.IntSlider()
 

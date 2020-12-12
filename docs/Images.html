@@ -3,19 +3,16 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Images</title>
+<title>Images</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
-<h1 id="Images">Images</h1>
-<p>This describes how images work.</p>
+
+<h1 id="Images">Images<a class="anchor-link" href="#Images"></a></h1><p>This describes how images work.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-
-<h2 id="Resizing-or-Scaling">Resizing or Scaling</h2>
-
-<p>The size of the image below is 260 pixels in the X (across the screen/width) direction and
+<h2 id="Resizing-or-Scaling">Resizing or Scaling<a class="anchor-link" href="#Resizing-or-Scaling"></a></h2><p>The size of the image below is 260 pixels in the X (across the screen/width) direction and
 is 140 pixels in the Y (up and down/height) direction. Sometimes this is shown as:</p>
 <ul>
 <li>260 by 140</li>
@@ -56,11 +53,86 @@ Scaling can be performed using the following:
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Pixels">Pixels</h2><p>The following image is part of the original image above and shows 40 by 50 pixels.
-<br><img src="../docs/images/1-pets-cropped-dog.png" width="50"/>
+<h2 id="Pixels">Pixels<a class="anchor-link" href="#Pixels"></a></h2><p>The following image is part of the original image above and shows 40 by 50 pixels.
+<br><img src="../docs/images/1-pets-cropped-zoomed-dog.png" width="50"/>
 <br>
 Here is what the pixels look like if they are shown larger. So the pixels are the small squares. Televisions and phones have pixels, but they can be very small.
-<br><img src="../docs/images/1-pets-cropped-dog.png" width="300"/><br></p>
+<br><img src="../docs/images/1-pets-cropped-zoomed-dog.png" width="300"/><br></p>
+<p>How many colors are in one pixel?</p>
+<p>
+See <a href="../docs/Tasks.html#editimage">Edit using Gimp</a> for viewing and drawing on images.
+</p>
+<p>
+    In Gimp, open file "1-pets.jpg" and use View/Zoom and select something
+    like 4:1 or 400% to see something like this image. The zoom feature
+    does not change the image, it only changes the display.
+</p>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Color">Color<a class="anchor-link" href="#Color"></a></h2><p>Colors for programming are created using light from 3 colors. The three colors are red, blue and green. Each color can be a different brightness.</p>
+<p>
+    There are many ways to represent the brightness in programs.
+    The <a href="../docs/Tasks.html#editvectorimage">Inkscape</a> program has a nice way to represent colors in their
+    Fill and Stroke paint windows.
+</p><h3 id="Hexidecimal">Hexidecimal<a class="anchor-link" href="#Hexidecimal"></a></h3><p>Here is how the first numbers relate.</p>
+<table border="1">
+    <tr><th>Decimal</th><th>Hexidecimal</th></tr>
+    <tr><td>0</td><td>0</td></tr>
+    <tr><td>1</td><td>1</td></tr>
+    <tr><td>2</td><td>2</td></tr>
+    <tr><td>3</td><td>3</td></tr>
+    <tr><td>4</td><td>4</td></tr>
+    <tr><td>5</td><td>5</td></tr>
+    <tr><td>6</td><td>6</td></tr>
+    <tr><td>7</td><td>7</td></tr>
+    <tr><td>8</td><td>8</td></tr>
+    <tr><td>9</td><td>9</td></tr>
+    <tr><td>a</td><td>10</td></tr>
+    <tr><td>b</td><td>11</td></tr>
+    <tr><td>c</td><td>12</td></tr>
+    <tr><td>d</td><td>13</td></tr>
+    <tr><td>e</td><td>14</td></tr>
+    <tr><td>f</td><td>15</td></tr>
+    <tr><td>10</td><td>16</td></tr>
+    <tr><td>11</td><td>17</td></tr>
+    <tr><td>12</td><td>18</td></tr>
+</table><p>There is a formula to convert decimal to hexidecimal. Multiply the first character by 16, and add the second character.</p>
+<p><table border="1">
+    <tr><th>decimal</th><th>Calculation</th><th>hexidecimal</th></tr>
+    <tr><td>46</td><td>(4 * 16) + 6</td><td>70</td></tr>
+    <tr><td>80</td><td>(8 * 16) + 0</td><td>128</td></tr>
+    <tr><td>c0</td><td>(c=12 * 16) + 0</td><td>192</td></tr>
+    <tr><td>ff</td><td>(f=15 * 16) + f=15</td><td>255</td></tr>
+</table>
+Both Windows and Linux have a calculator that can be set to
+programmer mode, and will convert between hex and decimal.</p>
+<h3 id="Color-Combinations">Color Combinations<a class="anchor-link" href="#Color-Combinations"></a></h3><p>Some examples of colors are shown here in hexadecimal.
+Note that the first two characters are ff, then the color is the brightest red.
+The higher the first two characters are, the more red there is.
+<br>
+When the last two characters are ff, then the color is the most intense blue.
+<br>
+<img src="../docs/images/Colors.svg">
+</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Transparency">Transparency<a class="anchor-link" href="#Transparency"></a></h2><p>Many programs have what is called an alpha layer or opacity. This is used for images show the background in parts of the image. This is very important for animation, which is displaying different images to show movement.</p>
+<p><p>
+    The following image shows the background (white) behind the girl.
+</p>
+<img src="../fields/game/doll-data/Girl/girl1.png" width="50"></p>
+<p><p>
+    The following image shows the background (blue) behind the girl, but notices that the girl eye color is still white.
+</p></p>
+<p><div style="background-color:lightblue">
+<img src="../fields/game/doll-data/Girl/girl1.png" width="50">
+</div>
+This means that parts of the image how transparent it is by using an extra value (part of the color number).</p>
 
 </div>
 </div>
