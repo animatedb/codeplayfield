@@ -12,7 +12,8 @@ A visual environment to learn programming using Python 3.
 
 ## Jupyter
 - Select the Code button above, then select "Download ZIP". Another option is to
-  use the "Download" link and download from releases.
+  use the "Download" link and download from releases. The releases may not be as
+  up to date as the ZIP method.
 - Unzip in a local folder.
 - Move to the local folder "codeplayfield".
 - Install (pip)[https://pip.pypa.io/en/stable/installing/] if it is not already on your system.
