@@ -26,9 +26,6 @@ class Object(pg.sprite.Sprite):
         self.rules = []
         self.rect = self.images[0].get_rect()
 
-    def getRect(self):
-        return self.rect
-
     def getSidePos(self, objSide:base2d.ObjectSide):
         if objSide == base2d.ObjectSide.Left:
             pos = self.rect.left
@@ -40,10 +37,28 @@ class Object(pg.sprite.Sprite):
             pos = self.rect.bottom
         return pos
 
+    def setPosition(self, x:int, y:int) -> None:
+        for image in self.images:
+            self.rect = image.get_rect().move((x, y))
+
+    def setSize(self, x_or_size, y:int=None) -> None:
+        if y:
+            self.imageSize = (x_or_size, y)
+        else:
+            self.imageSize = x_or_size
+        self._setSizeOrRotation()
+
+    def getPosition(self):
+        return self.rect.topleft
+
+    def getRect(self):
+        return self.rect
+
     def getSize(self):
         return self.rect.right, self.rect.bottom
 
-    def setImages(self, filePattern:Union[List, str]):
+
+    def setImages(self, filePattern:Union[List, str]) -> None:
         # Original images must be kept becase rotate and resize are are lossy.
         self.origImages = []
         self.images = []
@@ -59,13 +74,6 @@ class Object(pg.sprite.Sprite):
             self.images.append(image)
             self.origImages.append(image.copy())
 
-    def setPosition(self, x:int, y:int) -> None:
-        for image in self.images:
-            self.rect = image.get_rect().move((x, y))
-
-    def getPosition(self):
-        return self.rect.topleft
-
     def rotateImageInitial(self, initialAngle) -> None:
         self.initialRotation = initialAngle        
 
@@ -76,13 +84,6 @@ class Object(pg.sprite.Sprite):
         This does a clockwise rotation.
         """
         self.imageRotation = angle
-        self._setSizeOrRotation()
-
-    def setSize(self, x_or_size, y:int=None) -> None:
-        if y:
-            self.imageSize = (x_or_size, y)
-        else:
-            self.imageSize = x_or_size
         self._setSizeOrRotation()
 
     # Each time the size or rotation is changed, some pixels can be lost. So a
@@ -101,7 +102,7 @@ class Object(pg.sprite.Sprite):
     # flip and other times it should be a rotate (flip x and y).
     def setDirection(self, direction:int) -> None:
         """
-        Sets the direction on the screen.
+        Sets the direction of the object.
 
         direction: 0 is up, 90 is right, 180 is down, 180+90 (270) is left.
 
@@ -112,27 +113,37 @@ class Object(pg.sprite.Sprite):
 
     def getDirection(self) -> int:
         """
-        Gets the direction on the screen.
+        Gets the direction of the object.
         """
         return self.direction
 
-    def addRule(self, rule):
-        rule.setObject(self)
-        self.rules.append(rule)
-
-    def replaceRules(self, rules):
+    def updateRules(self, rules) -> None:
         for rule in self.rules:
             rule.endRule(self)
         for rule in rules:
             rule.setObject(self)
         self.rules = rules
 
-    def runRules(self, rules:List):
+    def runRules(self, rules:List) -> None:
         for rule in rules:
             rule.setObject(self)
             rule.update()
 
-    def update(self):
+    def setLayer(self, layer:int) -> None:
+        """
+        Set the layer of the object on the screen.
+
+        Lowest layer numbers are drawn first (background is zero).
+        The higher the layer number is, it is drawn last or on top of
+        previous layers.
+        """
+        for image in self.images:
+            self.change_layer(layer)
+
+    def getLayer(self) -> int:
+        return self.images[0].get_layer_of_sprite()
+
+    def update(self) -> None:
         self.imageIndex += self.animationIncrement
         if self.imageIndex >= len(self.images):
              self.imageIndex = 0

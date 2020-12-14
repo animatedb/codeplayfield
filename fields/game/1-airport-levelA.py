@@ -19,18 +19,17 @@ def main():
     gameSize = (1000, 600)
     game = Game2d('Scene', gameSize)
 
-    backImage = Object(Path(data_dir, 'airport-1000x600.jpg'))
-    backImage.setSize(gameSize)
+    airport = Object(Path(data_dir, 'airport-1000x600.jpg'))
+    # runRules runs the rules right away.
+    airport.runRules([SetSize(gameSize)])
 
     bird = Object(Path(data_dir, 'Bird'))
-    # @todo - coordinates should be as percent of full size image?
-    bird.setSize(40, 40)
-    bird.setPosition(10, 150)
-    bird.flipX()
+    bird.runRules([SetPosition(10, 150), SetSize(40, 40), FlipX()])
 
-    bird.addRule(RuleMoveLeftRightToLimits(9))
+    game.addObjects([airport, bird])
 
-    game.addObjects((backImage, bird))
+    # updateRules runs the rules every time the dollGame.update is called below.
+    bird.updateRules([MoveLeftRightToLimits(9)])
 
     # Main Loop
     going = True

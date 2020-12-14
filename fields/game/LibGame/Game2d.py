@@ -35,7 +35,10 @@ class Game2d:
         base2d.MainGame = self
 
     def addObjects(self, objects):
-        self.allObjects = pg.sprite.RenderPlain(objects)
+#        self.allObjects = pg.sprite.RenderPlain(objects)
+#        pg.sprite.RenderPlain(objects)
+        self.allObjects = pg.sprite.LayeredUpdates()
+        self.allObjects.add(objects)
 
     def update(self, clockTick:int):
         """ Runs rules for all objects that were added with addObjects """

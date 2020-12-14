@@ -3,10 +3,10 @@
 # Import Modules
 import os
 import pygame as pg
-import LibGame.Game2d as game2d
-import LibGame.Game2dBase as base2d
-import LibGame.Game2dObject as object2d
-import LibGame.Game2dRule as rule2d
+import LibGame.Game2d as game
+import LibGame.Game2dBase as base
+import LibGame.Game2dObject as obj
+import LibGame.Game2dRule as rule
 
 data_dir = "doll-data"
 
@@ -17,67 +17,57 @@ def main():
        a loop until the function returns."""
 
     gameSize = (1000, 600)
-    game = game2d.Game2d('Scene', gameSize)
+    dollGame = game.Game2d('Scene', gameSize)
 
-    house = object2d.Object(base2d.Path(data_dir, 'House'))
-    house.setSize(gameSize)
+    house = obj.Object(base.Path(data_dir, 'house.jpg'))
+    # runRules runs the rules right away.
+    house.runRules([rule.SetSize(gameSize)])
+
     # Shows: Use Left, Right, Up, s, g keys
-    keyText = object2d.Object(base2d.Path(data_dir, 'keytext.png'))
-    keyText.setPosition(20, 20)
-    keyText.setSize(600, 40)
+    keyText = obj.Object(base.Path(data_dir, 'keytext.png'))
+    keyText.runRules([rule.SetPosition(20, 20), rule.SetSize(600, 40)])
 
-    boy = object2d.Object(base2d.Path(data_dir, 'Boy'))
-    # @todo - coordinates should be as percent of full size image?
-    boy.setSize(150, 400)
-    boy.setPosition(10, 200)
+    boy = obj.Object(base.Path(data_dir, 'Boy'))
+    boy.runRules([rule.SetPosition(10, 200), rule.SetSize(150, 400)])
 
-    girl = object2d.Object(base2d.Path(data_dir, 'Girl'))
-    girl.setSize(150, 400)
-    girl.setPosition(500, 200)
+    girl = obj.Object(base.Path(data_dir, 'Girl'))
+    girl.runRules([rule.SetPosition(500, 200), rule.SetSize(150, 400)])
 
-    boy.addRule(rule2d.RuleMoveLeftRight(20))
-    girl.addRule(rule2d.RuleMoveLeftRight(-20))
+    dollGame.addObjects([house, keyText, boy, girl])
 
-    game.addObjects((house, keyText, boy, girl))
+    # updateRules runs the rules every time the dollGame.update is called below.
+    girl.updateRules([rule.MoveLeftRight(-20)])
+    boy.updateRules([rule.MoveLeftRight(20)])
 
     # Main Loop
     going = True
     while going:
         # Handle Input Events
-        for event in game.getEvent():
-            if game.checkKeyDown(event, 's'):
-                boy.replaceRules((rule2d.RuleStopAnimation(),))
-            elif game.checkKeyDown(event, 'g'):
-                boy.replaceRules((rule2d.RuleMoveLeftRightToLimits(20),))
+        for event in dollGame.getEvent():
+            # Check if the 's' key was pressed.
+            if dollGame.checkKeyDown(event, 's'):
+                # The 's' key was pressed, so stop to only show a single image.
+                # This also replaces RuleMoveLeftRight, so there is no movement anymore.
+                boy.updateRules([rule.StopAnimation()])
+            elif dollGame.checkKeyDown(event, 'g'):
+                boy.setRules([rule.MoveLeftRightToLimits(20)])
                 # This has to be done since direction is not restored
                 # Add stop to rule?
                 boy.setPosition(10, 200)
-            elif game.checkKeyDown(event, pg.K_LEFT):
-                girl.replaceRules((rule2d.RuleMoveLeftRight(-20),))
-            elif game.checkKeyDown(event, pg.K_RIGHT):
-                girl.replaceRules((rule2d.RuleMoveLeftRight(20),))
-            elif game.checkKeyUp(event, pg.K_LEFT) or game.checkKeyUp(event, pg.K_RIGHT):
-                girl.replaceRules((rule2d.RuleStopAnimation(),))
-            elif game.checkKeyUp(event, pg.K_DOWN):
-                girl.replaceRules((rule2d.RuleStopAnimation(),))
-            elif game.checkKeyUp(event, pg.K_UP):
-                girl.setImages(base2d.Path(data_dir, 'Girl-Jump'))
-                girl.setSize(150, 400)
-                # These rules are run when the jump is finished
-                jumpDoneRules = (
-                    rule2d.RuleSetImages(base2d.Path(data_dir, 'Girl')),
-                    rule2d.RuleSetSize(150, 400),
-                    rule2d.RuleMoveLeftRight(0),    # Go back to left/right images.
-                    rule2d.RuleStopAnimation()
-                    )
-                rules = (rule2d.RuleJump(-40, 3, jumpDoneRules),)
-                girl.replaceRules(rules)
+            elif dollGame.checkKeyDown(event, pg.K_LEFT):
+                girl.updateRules([rule.MoveLeftRight(-20)])
+            elif dollGame.checkKeyDown(event, pg.K_RIGHT):
+                girl.updateRules([rule.MoveLeftRight(20)])
+            elif dollGame.checkKeyUp(event, pg.K_LEFT) or dollGame.checkKeyUp(event, pg.K_RIGHT):
+                girl.updateRules([rule.StopAnimation()])
+            elif dollGame.checkKeyUp(event, pg.K_DOWN) or dollGame.checkKeyUp(event, pg.K_UP):
+                girl.updateRules([rule.StopAnimation()])
 
             if event.type == pg.QUIT:
                 going = False
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 going = False
-        game.update(5)
+        dollGame.update(5)
     pg.quit()
 
 

@@ -55,7 +55,7 @@ class Rule:
         pass
 
 
-class RuleMoveLinear(Rule):
+class MoveLinear(Rule):
     """ Moves an object image at a constant speed. """
 
     def __init__(self, xMove:int, yMove:int):
@@ -120,7 +120,7 @@ class RuleMoveLinear(Rule):
 # Moves in the up direction starting from the current object position
 # slow, then faster, then slowing again.
 # Then moves in the down direction with the same speed as up.
-class RuleJump(Rule):
+class Jump(Rule):
     def __init__(self, yMove:int, yIncrement:int, rules:List):
         """
         Initializes the rule.
@@ -194,7 +194,7 @@ class RuleJump(Rule):
     def endRule(self, obj):
         self.obj.rect = self.startRect
 
-class RuleLimit(Rule):
+class Limit(Rule):
     """ Runs an action when the limit is reached. """
 # @todo - get rid of actions. See RuleJump
     def __init__(self, objSide:base2d.ObjectSide, op, limit:int, actions:List):
@@ -229,18 +229,18 @@ class RuleLimit(Rule):
             for action in self.actions:
                 action()
 
-class RuleReplaceRules(Rule):
+class ReplaceRules(Rule):
     def __init__(self, rules:List):
         self.rules = rules
 
     def update(self):
         self.obj.replaceRules(self.rules)
 
-class RuleStopAnimation(Rule):
+class StopAnimation(Rule):
     """
     Stops the animation.
 
-    The animation can be restarted by running rules like RuleMoveLeftRight.
+    The animation can be restarted by running rules like MoveLeftRight.
     """
     def __init__(self):
         pass
@@ -250,7 +250,7 @@ class RuleStopAnimation(Rule):
         self.updateCheckObject()
         self.obj.stopAnimation()
 
-class RuleSetImages(Rule):
+class SetImages(Rule):
     """
     Sets images.
 
@@ -263,7 +263,21 @@ class RuleSetImages(Rule):
         self.updateCheckObject()
         self.obj.setImages(self.filePattern)
 
-class RuleSetSize(Rule):
+class SetPosition(Rule):
+    """
+    Sets image position.
+
+    obj: The object to set position.
+    """
+    def __init__(self, xOrSize, y:int=None):
+        self.xOrSize = xOrSize
+        self.y = y
+
+    def update(self):
+        self.updateCheckObject()
+        self.obj.setPosition(self.xOrSize, self.y)
+
+class SetSize(Rule):
     """
     Sets image size.
 
@@ -277,7 +291,12 @@ class RuleSetSize(Rule):
         self.updateCheckObject()
         self.obj.setSize(self.xOrSize, self.y)
 
-class RuleMoveLeftRightToLimits(Rule):
+class FlipX(Rule):
+    def update(self):
+        self.updateCheckObject()
+        self.obj.flipX()
+
+class MoveLeftRightToLimits(Rule):
     """
     Moves an object between limits, then reverses direction and flips the image.
 
@@ -290,7 +309,7 @@ class RuleMoveLeftRightToLimits(Rule):
     """
     def __init__(self, speed:int=None, leftLimit:int = None, rightLimit:int=None):
         Rule.__init__(self)
-        self.ruleMoveLinear = RuleMoveLinear(speed, 0)
+        self.ruleMoveLinear = MoveLinear(speed, 0)
         if not leftLimit:
             leftLimit = base2d.MainGame.getRect().left
         if not rightLimit:
@@ -302,9 +321,9 @@ class RuleMoveLeftRightToLimits(Rule):
         super().setObject(obj)
         obj.runAnimation(True)
         actions = (self.ruleMoveLinear.reverseX, obj.flipX)
-        self.ruleLimitRight = RuleLimit(base2d.ObjectSide.Right, gt,
+        self.ruleLimitRight = Limit(base2d.ObjectSide.Right, gt,
             self.rightLimit, actions)
-        self.ruleLimitLeft = RuleLimit(base2d.ObjectSide.Left, lt,
+        self.ruleLimitLeft = Limit(base2d.ObjectSide.Left, lt,
             self.leftLimit, actions)
         self.ruleMoveLinear.setObject(obj)
         self.ruleLimitLeft.setObject(obj)
@@ -320,11 +339,11 @@ class RuleMoveLeftRightToLimits(Rule):
         self.ruleLimitRight.update()
         self.ruleLimitLeft.update()
 
-class RuleMoveInArea(Rule):
+class MoveInArea(Rule):
     def __init__(self, speedX:int=None, speedY:int=None, leftLimit:int = None, rightLimit:int=None,
         topLimit:int=None, bottomLimit:int=None):
         Rule.__init__(self)
-        self.ruleMoveLinear = RuleMoveLinear(speedX, speedY)
+        self.ruleMoveLinear = MoveLinear(speedX, speedY)
         if not leftLimit:
             leftLimit = base2d.MainGame.getRect().left
         if not rightLimit:
@@ -345,13 +364,13 @@ class RuleMoveInArea(Rule):
         self.ruleMoveLinear.rotateToDirection()
         xActions = (self.ruleMoveLinear.reverseXAndRotateImage, )
         yActions = (self.ruleMoveLinear.reverseYAndRotateImage, )
-        self.ruleLimitRight = RuleLimit(base2d.ObjectSide.Right, gt,
+        self.ruleLimitRight = Limit(base2d.ObjectSide.Right, gt,
             self.rightLimit, xActions)
-        self.ruleLimitLeft = RuleLimit(base2d.ObjectSide.Left, lt,
+        self.ruleLimitLeft = Limit(base2d.ObjectSide.Left, lt,
             self.leftLimit, xActions)
-        self.ruleLimitTop = RuleLimit(base2d.ObjectSide.Top, lt,
+        self.ruleLimitTop = Limit(base2d.ObjectSide.Top, lt,
             self.topLimit, yActions)
-        self.ruleLimitBottom = RuleLimit(base2d.ObjectSide.Bottom, gt,
+        self.ruleLimitBottom = Limit(base2d.ObjectSide.Bottom, gt,
             self.bottomLimit, yActions)
         self.ruleLimitLeft.setObject(obj)
         self.ruleLimitRight.setObject(obj)
@@ -370,7 +389,7 @@ class RuleMoveInArea(Rule):
         self.ruleLimitTop.update()
         self.ruleLimitBottom.update()
 
-class RuleMoveLeftRight(Rule):
+class MoveLeftRight(Rule):
     """
     This moves left or right.
 
@@ -397,7 +416,7 @@ class RuleMoveLeftRight(Rule):
         xPos, yPos = self.obj.getPosition()
         self.obj.setPosition(xPos+self.xMove, yPos)
 
-class RuleTouches(Rule):
+class TouchesObjects(Rule):
     def __init__(self, objects:List, actions:List) -> None:
         Rule.__init__(self)
         self.objects = objects
