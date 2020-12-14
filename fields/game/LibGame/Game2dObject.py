@@ -14,6 +14,7 @@ if not pg.mixer:
 
 class Object(pg.sprite.Sprite):
     def __init__(self, filePattern:Union[List, str]):
+        """ filePattern can be a filename or a directory of images. """
         pg.sprite.Sprite.__init__(self)  # call Sprite intializer
         self.setImages(filePattern)
         self.setPosition(0, 0) # Default to known position
@@ -59,6 +60,7 @@ class Object(pg.sprite.Sprite):
 
 
     def setImages(self, filePattern:Union[List, str]) -> None:
+        """ filePattern can be a filename or a directory of images. """
         # Original images must be kept becase rotate and resize are are lossy.
         self.origImages = []
         self.images = []
@@ -151,10 +153,13 @@ class Object(pg.sprite.Sprite):
         for rule in self.rules:
             rule.update()
 
-    # Can be used to initialize the index to different values,
-    # or to reset to a known image index.
-    def setAnimationIndex(self, index:int) -> None:
-        self.animationIncrement = index
+    def setImageIndex(self, index:int) -> None:
+        # Can be used to initialize the index to different values,
+        # or to reset to a known image index.
+        self.imageIndex = index
+
+    def getImageIndex(self) -> int:
+        return self.imageIndex
 
     def stopAnimation(self):
         self.runAnimation(False)
@@ -169,6 +174,9 @@ class Object(pg.sprite.Sprite):
     def flipX(self):
         for index in range(0, len(self.images)):
             self.images[index] = pg.transform.flip(self.images[index], 1, 0)
+
+    def touchesRect(self, rect):
+        return self.getRect().colliderect(rect)
 
 class ObjectSound:
     def __init__(self, filename:str) -> None:

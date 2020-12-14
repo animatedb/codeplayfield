@@ -219,11 +219,11 @@ class Limit(Rule):
         self.actions = actions
         self.checkActions()
 
-    """
-    This checks the limit each time the Game2d.update() is called.
-    If the limit is reached, this runs the actions.
-    """
     def update(self):
+        """
+        This checks the limit each time the Game2d.update() is called.
+        If the limit is reached, this runs the actions.
+        """
         self.updateCheckObject()
         if self.op(self.obj.getSidePos(self.objSide), self.limit):
             for action in self.actions:
@@ -242,11 +242,8 @@ class StopAnimation(Rule):
 
     The animation can be restarted by running rules like MoveLeftRight.
     """
-    def __init__(self):
-        pass
-
-    """ This stops the animation when Game2d.update() is called. """    
     def update(self):
+        """ This stops the animation when Game2d.update() is called. """
         self.updateCheckObject()
         self.obj.stopAnimation()
 
@@ -295,6 +292,11 @@ class FlipX(Rule):
     def update(self):
         self.updateCheckObject()
         self.obj.flipX()
+
+class RunAnimation(Rule):
+    def update(self):
+        self.updateCheckObject()
+        self.obj.runAnimation()
 
 class MoveLeftRightToLimits(Rule):
     """
@@ -377,11 +379,11 @@ class MoveInArea(Rule):
         self.ruleLimitTop.setObject(obj)
         self.ruleLimitBottom.setObject(obj)
 
-    """
-    Checks the limit each time the Game2d.update() is called.
-    If the limit is reached, this reverses direction and flips the image.
-    """
     def update(self):
+        """
+        Checks the limit each time the Game2d.update() is called.
+        If the limit is reached, this reverses direction and flips the image.
+        """
         self.updateCheckObject()
         self.ruleMoveLinear.update()
         self.ruleLimitRight.update()
@@ -408,10 +410,10 @@ class MoveLeftRight(Rule):
         super().setObject(obj)
         obj.runAnimation(True)
 
-    """
-    Moves the X position each time Game2d.update() is called.
-    """
     def update(self):
+        """
+        Moves the X position each time Game2d.update() is called.
+        """
         self.updateCheckObject()
         xPos, yPos = self.obj.getPosition()
         self.obj.setPosition(xPos+self.xMove, yPos)
@@ -425,7 +427,7 @@ class TouchesObjects(Rule):
     def update(self) -> None:
         self.updateCheckObject()
         for obj in self.objects:
-            if self.obj.getRect().colliderect(obj.getRect()):
+            if self.obj.touchesRect(obj.getRect()):
                 for action in self.actions:
                     action()
                 break;

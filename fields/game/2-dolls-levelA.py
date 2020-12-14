@@ -17,9 +17,9 @@ def main():
        a loop until the function returns."""
 
     gameSize = (1000, 600)
-    dollGame = game.Game2d('Scene', gameSize)
+    dollGame = game.Game2d('Dolls', gameSize)
 
-    house = obj.Object(base.Path(data_dir, 'house.jpg'))
+    house = obj.Object(base.Path(data_dir, 'House/house.jpg'))
     # runRules runs the rules right away.
     house.runRules([rule.SetSize(gameSize)])
 
@@ -50,7 +50,7 @@ def main():
                 # This also replaces RuleMoveLeftRight, so there is no movement anymore.
                 boy.updateRules([rule.StopAnimation()])
             elif dollGame.checkKeyDown(event, 'g'):
-                boy.setRules([rule.MoveLeftRightToLimits(20)])
+                boy.updateRules([rule.MoveLeftRightToLimits(20)])
                 # This has to be done since direction is not restored
                 # Add stop to rule?
                 boy.setPosition(10, 200)
