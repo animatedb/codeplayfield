@@ -16,8 +16,8 @@ A visual environment to learn programming using Python 3.
   up to date as the ZIP method.
 - Unzip in a local folder.
 - Move to the local folder "codeplayfield".
-- Install (pip)[https://pip.pypa.io/en/stable/installing/] if it is not already on your system.
-- Install (Jupyter)[https://jupyter.org/install] using the "Install with pip" method
+- Install [pip](https://pip.pypa.io/en/stable/installing/) if it is not already on your system.
+- Install [Jupyter](https://jupyter.org/install) using the "Install with pip" method
 - There are many ways to run Jupyter.
   - 'jupyter-notebook CodePlayField.ipynb'
   - 'jupyter-notebook'
