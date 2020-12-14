@@ -15,20 +15,7 @@ if not pg.mixer:
 class Object(pg.sprite.Sprite):
     def __init__(self, filePattern:Union[List, str]):
         pg.sprite.Sprite.__init__(self)  # call Sprite intializer
-        # This must be kept becase rotate and resize are are lossy.
-        self.origImages = []
-        self.images = []
-        if isinstance(filePattern, str):
-            if os.path.isdir(filePattern):
-                filenames = [base2d.Path(filePattern, f) for f in os.listdir(filePattern)]
-            else:
-                filenames = [filePattern]
-        else:
-            filenames = filePattern
-        for filepath in filenames:
-            image = base2d.LoadImage(filepath)
-            self.images.append(image)
-            self.origImages.append(image.copy())
+        self.setImages(filePattern)
         self.setPosition(0, 0) # Default to known position
         self.direction = 0
         self.initialRotation = 0
@@ -55,6 +42,22 @@ class Object(pg.sprite.Sprite):
 
     def getSize(self):
         return self.rect.right, self.rect.bottom
+
+    def setImages(self, filePattern:Union[List, str]):
+        # Original images must be kept becase rotate and resize are are lossy.
+        self.origImages = []
+        self.images = []
+        if isinstance(filePattern, str):
+            if os.path.isdir(filePattern):
+                filenames = [base2d.Path(filePattern, f) for f in os.listdir(filePattern)]
+            else:
+                filenames = [filePattern]
+        else:
+            filenames = filePattern
+        for filepath in filenames:
+            image = base2d.LoadImage(filepath)
+            self.images.append(image)
+            self.origImages.append(image.copy())
 
     def setPosition(self, x:int, y:int) -> None:
         for image in self.images:
@@ -92,7 +95,7 @@ class Object(pg.sprite.Sprite):
         for index in range(0, len(self.images)):
             self.images[index] = pg.transform.scale(self.images[index], self.imageSize)
 
-    # Direction is saved in the object because the direction must be sometime known
+    # Direction is saved in the object because the direction must be sometimes known
     # even if the object isn't moving.
     # Setting direction does not change the image because sometimes it should be a
     # flip and other times it should be a rotate (flip x and y).
@@ -118,9 +121,16 @@ class Object(pg.sprite.Sprite):
         self.rules.append(rule)
 
     def replaceRules(self, rules):
+        for rule in self.rules:
+            rule.endRule(self)
         for rule in rules:
             rule.setObject(self)
         self.rules = rules
+
+    def runRules(self, rules:List):
+        for rule in rules:
+            rule.setObject(self)
+            rule.update()
 
     def update(self):
         self.imageIndex += self.animationIncrement
@@ -134,7 +144,10 @@ class Object(pg.sprite.Sprite):
     # or to reset to a known image index.
     def setAnimationIndex(self, index:int) -> None:
         self.animationIncrement = index
-        
+
+    def stopAnimation(self):
+        self.runAnimation(False)
+
     def runAnimation(self, on=True):
         if on:
             self.animationIncrement = 1

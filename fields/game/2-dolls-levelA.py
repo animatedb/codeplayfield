@@ -58,8 +58,20 @@ def main():
                 girl.replaceRules((rule2d.RuleMoveLeftRight(20),))
             elif game.checkKeyUp(event, pg.K_LEFT) or game.checkKeyUp(event, pg.K_RIGHT):
                 girl.replaceRules((rule2d.RuleStopAnimation(),))
-            elif game.checkKeyUp(event, pg.K_UP) or game.checkKeyUp(event, pg.K_DOWN):
+            elif game.checkKeyUp(event, pg.K_DOWN):
                 girl.replaceRules((rule2d.RuleStopAnimation(),))
+            elif game.checkKeyUp(event, pg.K_UP):
+                girl.setImages(base2d.Path(data_dir, 'Girl-Jump'))
+                girl.setSize(150, 400)
+                # These rules are run when the jump is finished
+                jumpDoneRules = (
+                    rule2d.RuleSetImages(base2d.Path(data_dir, 'Girl')),
+                    rule2d.RuleSetSize(150, 400),
+                    rule2d.RuleMoveLeftRight(0),    # Go back to left/right images.
+                    rule2d.RuleStopAnimation()
+                    )
+                rules = (rule2d.RuleJump(-40, 3, jumpDoneRules),)
+                girl.replaceRules(rules)
 
             if event.type == pg.QUIT:
                 going = False
