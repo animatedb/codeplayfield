@@ -25,7 +25,8 @@ A visual environment to learn programming using Python 3.
 
 ## Project Goals
 
-- Provide a high level programming environment that allows making small
-  modifications of existing code that produce large visual or auditory changes.
+- Provide an quick and easy way to learn fun programming along with learning tools
+  for image and sound editing.
 - Allow very early learners that have a minimal amount of computer knowledge.
   This system will require someone that can install the software.
+
