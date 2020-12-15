@@ -139,11 +139,11 @@ class Object(pg.sprite.Sprite):
         The higher the layer number is, it is drawn last or on top of
         previous layers.
         """
-        for image in self.images:
-            self.change_layer(layer)
+        # pygame uses this in pg.sprite.LayeredUpdates() in the add function.
+        self._layer = layer
 
     def getLayer(self) -> int:
-        return self.images[0].get_layer_of_sprite()
+        return self._layer
 
     def update(self) -> None:
         self.imageIndex += self.animationIncrement

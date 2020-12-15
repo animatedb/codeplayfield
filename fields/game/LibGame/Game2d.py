@@ -33,11 +33,11 @@ class Game2d:
 
         self.clock = pg.time.Clock()
         base2d.MainGame = self
+        self.allObjects = pg.sprite.LayeredUpdates()
 
     def addObjects(self, objects):
 #        self.allObjects = pg.sprite.RenderPlain(objects)
 #        pg.sprite.RenderPlain(objects)
-        self.allObjects = pg.sprite.LayeredUpdates()
         self.allObjects.add(objects)
 
     def update(self, clockTick:int):

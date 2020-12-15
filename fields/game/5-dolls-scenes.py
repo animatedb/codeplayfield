@@ -10,6 +10,14 @@ import LibGame.Game2dRule as rule
 
 data_dir = "doll-data"
 
+# Define some values for scenes.
+# Sometimes enum is a better option. Especially for static type checking.
+Outside = 0
+Inside = 1
+
+# Define some positions.
+TopFloor = -5   # This is the top floor Y position of the tops of the movable objects.
+BottomFloor = 300
 
 def main():
     """this function is called when the program starts.
@@ -40,15 +48,23 @@ def main():
     keyText = obj.Object(base.Path(data_dir, 'keytext-scene.png'))
     keyText.runRules([rule.SetPosition(10, 10), rule.SetSize(350, 13)])
 
+    chair = obj.Object(base.Path(data_dir, 'chair.png'))
+    chair.setPosition(1000, 125)     # Hide the chair by moving off screen
+    chair.setSize(180, 170)
+    chair.setLayer(1)   # The chair will be drawn on top of any lower layer object.
+    chair.flipX()
+
     boy = obj.Object(base.Path(data_dir, 'Boy'))
     boy.setDirection(90)
-    boy.runRules([rule.StopAnimation(), rule.SetPosition(10, 300), rule.SetSize(100, 300)])
+    boy.runRules([rule.StopAnimation(), rule.SetPosition(10, BottomFloor),
+        rule.SetSize(100, 300)])
 
     girl = obj.Object(base.Path(data_dir, 'Girl'))
     girl.setDirection(270)
-    girl.runRules([rule.StopAnimation(), rule.SetPosition(500, 300), rule.SetSize(100, 300)])
+    girl.runRules([rule.StopAnimation(), rule.SetPosition(500, BottomFloor),
+        rule.SetSize(100, 300)])
 
-    dollGame.addObjects([scenes, keyText, boy, girl])
+    dollGame.addObjects([scenes, keyText, chair, boy, girl])
 
     # Main Loop
     activeObject = girl
@@ -73,29 +89,31 @@ def main():
             elif dollGame.checkKeyDown(event, pg.K_DOWN):
                 activeObject.updateRules([rule.StopAnimation()])
                 # Check if scene image index is 1, this means the inside house is displayed.
-                if scenes.getImageIndex() == 1:
+                if scenes.getImageIndex() == Inside:
                     if activeObject.touchesRect(insideStairsRect):
                         x, y = activeObject.getPosition()
-                        activeObject.setPosition(x, 300)
+                        activeObject.setPosition(x, BottomFloor)
             elif dollGame.checkKeyDown(event, pg.K_UP):
                 activeObject.updateRules([rule.StopAnimation()])
                 # Check if scene image index is 0, this means the outside house is displayed.
-                if scenes.getImageIndex() == 0:
+                if scenes.getImageIndex() == Outside:
+                    chair.setPosition(1000, 125)     # Hide the chair by moving off screen
                     if activeObject.touchesRect(outsideDoorRect):
-                        scenes.setImageIndex(1)
+                        scenes.setImageIndex(Inside)
                 # Check if scene image index is 1, this means the inside house is displayed.
-                if scenes.getImageIndex() == 1:
+                if scenes.getImageIndex() == Inside:
+                    chair.setPosition(700, 129)  # Show the chair by moving on screen
                     if activeObject.touchesRect(insideDoorRect):
-                        scenes.setImageIndex(0)
+                        scenes.setImageIndex(Outside)
                         # If any object went outside, there is no second floor, so move all
                         # objects down.
                         x, y = girl.getPosition()
-                        girl.setPosition(x, 300)
+                        girl.setPosition(x, BottomFloor)
                         x, y = boy.getPosition()
-                        boy.setPosition(x, 300)
+                        boy.setPosition(x, BottomFloor)
                     elif activeObject.touchesRect(insideStairsRect):
                         x, y = activeObject.getPosition()
-                        activeObject.setPosition(x, 0)
+                        activeObject.setPosition(x, TopFloor)
             elif dollGame.checkKeyUp(event, 'j') and activeObject == girl:
                 girl.runRules([rule.SetImages(base.Path(data_dir, 'Girl-Jump')),
                     rule.SetSize(150, 500), rule.RunAnimation()])
