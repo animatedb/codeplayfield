@@ -27,68 +27,76 @@ def main():
     # make them full height of screen.
     # Use Gimp to get the image positions.
     outsideXScale = 1000/235     # Scene X / image X
-    outsideDoorRectLeft = 95 * outsideXScale
-    outsideDoorRectWidth = (115-94) * outsideXScale
+    outsideDoorRectLeft = 100 * outsideXScale
+    outsideDoorRectWidth = (110-100) * outsideXScale
     # Rect is left, top, width, height
     outsideDoorRect = pg.Rect(outsideDoorRectLeft, 0, outsideDoorRectWidth, 600)
 
     insideXScale = 1000/230
-    insideStairsRect = pg.Rect(63*insideXScale, 0, (88-63)*insideXScale, 600)
+    insideStairsRect = pg.Rect(65*insideXScale, 0, (80-65)*insideXScale, 600)
     insideDoorRect = pg.Rect(27*insideXScale, 0, (58-27)*insideXScale, 600)
 
     # Shows: Use Left, Right, Up, s, g keys
-    keyText = obj.Object(base.Path(data_dir, 'keytext.png'))
-    keyText.runRules([rule.SetPosition(20, 20), rule.SetSize(600, 40)])
+    keyText = obj.Object(base.Path(data_dir, 'keytext-scene.png'))
+    keyText.runRules([rule.SetPosition(10, 10), rule.SetSize(350, 13)])
 
     boy = obj.Object(base.Path(data_dir, 'Boy'))
-    boy.runRules([rule.SetPosition(10, 300), rule.SetSize(100, 300)])
+    boy.setDirection(90)
+    boy.runRules([rule.StopAnimation(), rule.SetPosition(10, 300), rule.SetSize(100, 300)])
 
     girl = obj.Object(base.Path(data_dir, 'Girl'))
-    girl.runRules([rule.SetPosition(500, 300), rule.SetSize(100, 300)])
+    girl.setDirection(270)
+    girl.runRules([rule.StopAnimation(), rule.SetPosition(500, 300), rule.SetSize(100, 300)])
 
     dollGame.addObjects([scenes, keyText, boy, girl])
 
-    # updateRules runs the rules every time the dollGame.update is called below.
-    girl.updateRules([rule.MoveLeftRight(-20)])
-    boy.updateRules([rule.MoveLeftRight(20)])
-
     # Main Loop
+    activeObject = girl
     going = True
     while going:
         # Handle Input Events
         for event in dollGame.getEvent():
-            # Check if the 's' key was pressed.
-            if dollGame.checkKeyDown(event, 's'):
-                # The 's' key was pressed, so stop to only show a single image.
-                # This also replaces RuleMoveLeftRight, so there is no movement anymore.
-                boy.updateRules([rule.StopAnimation()])
+            if dollGame.checkKeyDown(event, 'b'):
+                activeObject = boy
             elif dollGame.checkKeyDown(event, 'g'):
-                boy.updateRules([rule.MoveLeftRightToLimits(20)])
-                # This has to be done since direction is not restored
-                # Add stop to rule?
-                boy.setPosition(10, 200)
-            elif dollGame.checkKeyDown(event, pg.K_LEFT):
-                girl.updateRules([rule.MoveLeftRight(-20)])
+                activeObject = girl
+
+            if dollGame.checkKeyDown(event, pg.K_LEFT):
+                setImageDirection(activeObject, pg.K_LEFT)
+                activeObject.updateRules([rule.MoveLeftRight(-20)])
             elif dollGame.checkKeyDown(event, pg.K_RIGHT):
-                girl.updateRules([rule.MoveLeftRight(20)])
+                setImageDirection(activeObject, pg.K_RIGHT)
+                activeObject.updateRules([rule.MoveLeftRight(20)])
             elif dollGame.checkKeyUp(event, pg.K_LEFT) or dollGame.checkKeyUp(event, pg.K_RIGHT):
-                girl.updateRules([rule.StopAnimation()])
-            elif dollGame.checkKeyUp(event, pg.K_DOWN):
-                girl.updateRules([rule.StopAnimation()])
-                if scenes.getImageIndex() == 1 and girl.touchesRect(insideStairsRect):
-                    x, y = girl.getPosition()
-                    girl.setPosition(x, 300)
-            elif dollGame.checkKeyUp(event, pg.K_UP):
-                girl.updateRules([rule.StopAnimation()])
-                if scenes.getImageIndex() == 0 and girl.touchesRect(outsideDoorRect):
-                    scenes.setImageIndex(1)
+                activeObject.updateRules([rule.StopAnimation()])
+
+            elif dollGame.checkKeyDown(event, pg.K_DOWN):
+                activeObject.updateRules([rule.StopAnimation()])
+                # Check if scene image index is 1, this means the inside house is displayed.
                 if scenes.getImageIndex() == 1:
-                    if girl.touchesRect(insideDoorRect):
+                    if activeObject.touchesRect(insideStairsRect):
+                        x, y = activeObject.getPosition()
+                        activeObject.setPosition(x, 300)
+            elif dollGame.checkKeyDown(event, pg.K_UP):
+                activeObject.updateRules([rule.StopAnimation()])
+                # Check if scene image index is 0, this means the outside house is displayed.
+                if scenes.getImageIndex() == 0:
+                    if activeObject.touchesRect(outsideDoorRect):
+                        scenes.setImageIndex(1)
+                # Check if scene image index is 1, this means the inside house is displayed.
+                if scenes.getImageIndex() == 1:
+                    if activeObject.touchesRect(insideDoorRect):
                         scenes.setImageIndex(0)
-                    elif girl.touchesRect(insideStairsRect):
+                        # If any object went outside, there is no second floor, so move all
+                        # objects down.
                         x, y = girl.getPosition()
-                        girl.setPosition(x, 0)
-            elif dollGame.checkKeyUp(event, 'j'):
+                        girl.setPosition(x, 300)
+                        x, y = boy.getPosition()
+                        boy.setPosition(x, 300)
+                    elif activeObject.touchesRect(insideStairsRect):
+                        x, y = activeObject.getPosition()
+                        activeObject.setPosition(x, 0)
+            elif dollGame.checkKeyUp(event, 'j') and activeObject == girl:
                 girl.runRules([rule.SetImages(base.Path(data_dir, 'Girl-Jump')),
                     rule.SetSize(150, 500), rule.RunAnimation()])
                 # These rules are run when the jump is finished.
@@ -107,6 +115,14 @@ def main():
         dollGame.update(5)
     pg.quit()
 
+def setImageDirection(obj, keyDirection):
+    if keyDirection == pg.K_RIGHT:
+        direction = 90
+    else:
+        direction = 270
+    if obj.getDirection() != direction:
+        obj.flipX()
+        obj.setDirection(direction)
 
 # this calls the 'main' function when this script is executed
 if __name__ == "__main__":
