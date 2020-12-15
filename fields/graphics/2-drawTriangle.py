@@ -21,6 +21,7 @@ def main():
     points = [p1, p2, p3]
 
     # Use Polygon object to draw the triangle
+    # Draw the points connected by a line with width of 4.
     DrawPolygon(window, points, 4, 'gray', 'cyan')
 
     UpdateText(window, text, 'Click anywhere to quit')

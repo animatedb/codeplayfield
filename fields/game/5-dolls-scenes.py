@@ -97,12 +97,10 @@ def main():
                 activeObject.updateRules([rule.StopAnimation()])
                 # Check if scene image index is 0, this means the outside house is displayed.
                 if scenes.getImageIndex() == Outside:
-                    chair.setPosition(1000, 125)     # Hide the chair by moving off screen
                     if activeObject.touchesRect(outsideDoorRect):
                         scenes.setImageIndex(Inside)
                 # Check if scene image index is 1, this means the inside house is displayed.
                 if scenes.getImageIndex() == Inside:
-                    chair.setPosition(700, 129)  # Show the chair by moving on screen
                     if activeObject.touchesRect(insideDoorRect):
                         scenes.setImageIndex(Outside)
                         # If any object went outside, there is no second floor, so move all
@@ -114,6 +112,10 @@ def main():
                     elif activeObject.touchesRect(insideStairsRect):
                         x, y = activeObject.getPosition()
                         activeObject.setPosition(x, TopFloor)
+                if scenes.getImageIndex() == Inside:
+                    chair.setPosition(700, 129)  # Show the chair by moving on screen
+                else:
+                    chair.setPosition(1000, 125)     # Hide the chair by moving off screen
             elif dollGame.checkKeyUp(event, 'j') and activeObject == girl:
                 girl.runRules([rule.SetImages(base.Path(data_dir, 'Girl-Jump')),
                     rule.SetSize(150, 500), rule.RunAnimation()])

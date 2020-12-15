@@ -35,7 +35,8 @@ def main():
 
     dollGame.addObjects([house, keyText, boy, girl])
 
-    # updateRules runs the rules every time the dollGame.update is called below.
+    # updateRules adds the rules to the objects and the game runs the
+    # rules every time the dollGame.update is called below.
     girl.updateRules([rule.MoveLeftRight(-20)])
     boy.updateRules([rule.MoveLeftRight(20)])
 

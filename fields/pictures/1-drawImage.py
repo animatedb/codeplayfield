@@ -5,10 +5,11 @@
 # Load a library that allows drawing and images.
 from LibImage.Images import *
 
+# Read an image file from disk into memory.
 # The image was downloaded from the internet at "cleanpng.com".
 image = ReadImage('1-pets.jpg')
 
-# Draw the image on the screen.
+# Draw the image from memory on to the screen.
 DrawImage(image)
 
 # Wait for a mouse button click
