@@ -11,26 +11,26 @@ def main():
     window = CreateWindow(200, 150)
 
     # Head
-    # Draw a circle at X=40, Y=100, radius=25
-    DrawCircle(window, 40, 100, 25, 'yellow')
+    # Draw a circle at X=40, Y=50, radius=25
+    DrawCircle(window, 40, 50, 25, 'yellow')
 
     # Eye
-    DrawCircle(window, 30, 105, 5, 'blue')
+    DrawCircle(window, 30, 45, 5, 'blue')
 
     # Other eye
-    # Draw a line at point 1 X=45, y=105 to
+    # Draw a line at point 1 X=45, y=45 to
     # point 2, x=55, y=105.
     # Width of the line is 3.
-    DrawLine(window, 45, 105, 55, 105, 3)
+    DrawLine(window, 45, 45, 55, 45, 3)
 
     # Mouth
     # Draw an oval with point1=30,90 and point2 = 50,85
-    DrawOval(window, 30, 90, 50, 85, 'red')
+    DrawOval(window, 30, 60, 50, 65, 'red')
 
     # Draw some text at X=100, Y=120
-    DrawText(window, 100, 120, 'A face')
+    DrawText(window, 100, 30, 'A face')
 
-    DrawText(window, window.getWidth()/2, 20, 'Click anywhere to quit.')
+    DrawText(window, window.getWidth()/2, 130, 'Click anywhere to quit.')
 
     WaitForMouseClick(window)
     CloseWindow(window)
