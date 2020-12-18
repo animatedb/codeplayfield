@@ -1,30 +1,53 @@
 <!DOCTYPE html>
 <html>
+<head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Images</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
+
+
+<!-- Compressed Jupyter File --><style type="text/css">
+.jp-InputArea-editor {border-radius: 0px;
+background: #f0f0f0;
+}
+body{
+line-height:1.6;
+font-size:14;
+font-weight:400;
+font-family:-apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+"Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", "Icons16", sans-serif;
+}
+</style>
+</head>
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Images">Images<a class="anchor-link" href="#Images"></a></h1><p>This describes how images work.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Resizing-or-Scaling">Resizing or Scaling<a class="anchor-link" href="#Resizing-or-Scaling"></a></h2><p>The size of the image below is 260 pixels in the X (across the screen/width) direction and
-is 140 pixels in the Y (up and down/height) direction. Sometimes this is shown as:</p>
+<h2 id="Resizing-or-Scaling">Resizing or Scaling<a class="anchor-link" href="#Resizing-or-Scaling"></a></h2><p>The size of the image below is 260 pixels in the X (across the screen/width) direction and is 140 pixels in the Y (up and down/height) direction.
+Usually the width (X) is first, then the height (Y).
+<br>
+Sometimes this is shown as:</p>
 <ul>
 <li>260 by 140</li>
 <li>260 x 140</li>
 </ul>
 <p><br>
-Usually the width (X) is first, then the height (Y).
+The x between the two numbers is different than the X meaning width. The size of the x is not consistent, so the place of the x is what is important for the meaning.
 <br>
 Notes:</p>
 <ul>
     <li>A "pixel" is a "picture element". It is a very small part of the picture.
-        This is described below.</li>
+        This is described more later.</li>
 </ul><p><br>
-<img src="../docs/images/1-pets.jpg" style="width:260px !important;height:140px;"></p>
+<img src="../docs/images/1-pets.jpg" style="width:260px !important;height:140px;" /></p>
 <p>It is possible to "scale" this image by changing the width. The width in this image was set to 500. Notice that the height didn't change.
 <br>
 Notes:</p>
@@ -33,7 +56,7 @@ Notes:</p>
 <li>The image looks a little fuzzier. This is because the original image is smaller and does not have many pixels.</li>
 </ul>
 <p><br>
-<img src="../docs/images/1-pets.jpg" style="width:500px !important;height:140px;"></p>
+<img src="../docs/images/1-pets.jpg" style="width:500px !important;height:140px;" /></p>
 <p><p>
 Scaling can be performed using the following:
 </p></p>
@@ -52,10 +75,10 @@ Scaling can be performed using the following:
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Pixels">Pixels<a class="anchor-link" href="#Pixels"></a></h2><p>The following image is part of the original image above and shows 40 by 50 pixels.
-<br><img src="../docs/images/1-pets-cropped-zoomed-dog.png" width="50">
+<br><img src="../docs/images/1-pets-cropped-zoomed-dog.png" width="50"/>
 <br>
 Here is what the pixels look like if they are shown larger. So the pixels are the small squares. Televisions and phones have pixels, but they can be very small.
-<br><img src="../docs/images/1-pets-cropped-zoomed-dog.png" width="300"><br></p>
+<br><img src="../docs/images/1-pets-cropped-zoomed-dog.png" width="300"/><br></p>
 <p>How many colors are in one pixel?</p>
 <p>
 See <a href="../docs/Tasks.html#editimage">Edit using Gimp</a> for viewing and drawing on images.
@@ -72,9 +95,10 @@ See <a href="../docs/Tasks.html#editimage">Edit using Gimp</a> for viewing and d
 <h2 id="Color">Color<a class="anchor-link" href="#Color"></a></h2><p>Colors for programming are created using light from 3 colors. The three colors are red, blue and green. Each color can be a different brightness.</p>
 <p>
     There are many ways to represent the brightness in programs.
-    The <a href="../docs/Tasks.html#editvectorimage">Inkscape</a> program has a nice way to represent colors in their
-    Fill and Stroke paint windows.
-</p><h3 id="Hexidecimal">Hexidecimal<a class="anchor-link" href="#Hexidecimal"></a></h3><p>Here is how the first numbers relate.</p>
+    The <a href="../docs/Tasks.html#editvectorimage">Inkscape</a> program has a nice way to represent colors in their Fill and Stroke paint windows.
+    The <a href="../docs/Tasks.html#editimage">Gimp</a> program has a window accessed from the Windows/Dockable Dialogs/Colors menu.
+</p><h3 id="Hexidecimal">Hexidecimal<a class="anchor-link" href="#Hexidecimal"></a></h3><p>Some programs show their color using hexidecimal numbers.
+Here is how the first numbers relate.</p>
 <table border="1">
     <tr><th>Decimal</th><th>Hexidecimal</th></tr>
     <tr><td>0</td><td>0</td></tr>
@@ -112,8 +136,7 @@ The higher the first two characters are, the more red there is.
 <br>
 When the last two characters are ff, then the color is the most intense blue.
 <br>
-<img src="../docs/images/Colors.svg">
-</p>
+<img src="../docs/images/Colors.svg"></p>
 
 </div>
 </div>
@@ -121,17 +144,51 @@ When the last two characters are ff, then the color is the most intense blue.
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Transparency">Transparency<a class="anchor-link" href="#Transparency"></a></h2><p>Many programs have what is called an alpha layer or opacity. This is used for images show the background in parts of the image. This is very important for animation, which is displaying different images to show movement.</p>
 <p><p>
-    The following image shows the background (white) behind the girl.
-</p>
-<img src="../fields/game/doll-data/Girl/girl1.png" width="50"></p>
+    The following image shows the background (white) behind the girl and bird.
+</p></p>
+<p><div style="background-color:white">
+<img src="../fields/game/doll-data/Girl/girl1.png" width="50">
+<img src="../fields/game/airport-data/Bird/bird-0062-trans.bmp" width="80">
+</div></p>
 <p><p>
-    The following image shows the background (blue) behind the girl, but notices that the girl eye color is still white.
+    The following image shows the background (blue) behind the girl and bird, but notices that the girl eye color is still white.
 </p></p>
 <p><div style="background-color:lightblue">
 <img src="../fields/game/doll-data/Girl/girl1.png" width="50">
+<img src="../fields/game/airport-data/Bird/bird-0062-trans.bmp" width="80">
 </div>
-This means that parts of the image how transparent it is by using an extra value (part of the color number).</p>
+This means that parts of the image indicate how transparent it is by using an extra value (part of the color number).</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Scenes">Scenes<a class="anchor-link" href="#Scenes"></a></h2><p>Many images can be placed in one rectangular area. The rectangular areas are often larger than the image sizes so that many images can fit into the area.</p>
+<p>The following scene is 80 pixels by 50 pixels. In programming, counting starts at 0 instead of 1. So instead of:</p>
+<p><ul>
+    <li>one, two, three = three positions</li>
+</ul><br>
+Use:<br></p>
+<p><ul>
+    <li>zero, one, two = three positions</li>
+</ul>
+Notice that when counting to three starting from 0, the last number is 2.</p>
+<p>
+The programs here all use position 0 X and 0 Y to mean the top left corner. So the green dot is at position (sometimes called coordinate) 0, 0. The red box is an image of size 4 x 3, and is at position 4, 11.
+The blue dot is at 79, 2. Notice again that starting counting at zero means that the last position is the size of the scene (80) minus 1 = 79.
+</p>
+<img src="../docs/images/Scene.svg">
+<p>
+To move the red image to the left, make the X position smaller, so moving to position 0, 11 would move all the way to the left side of the scene. Moving the X to 5, 6, 7, 8, 9, would move the red image smoothly to each point and look like the image was moving smoothly to all of the positions. Many of the game demos show this type of movement.
+</p>
+</div>
+</div>
+</body>
+
+
+
+
+
 
 
 </html>
-

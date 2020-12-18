@@ -12,27 +12,34 @@
 .jp-InputArea-editor {border-radius: 0px;
 background: #f0f0f0;
 }
+body{
+line-height:1.6;
+font-size:14;
+font-weight:400;
+font-family:-apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+"Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", "Icons16", sans-serif;
+}
 </style>
 </head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Storage">Storage<a class="anchor-link" href="#Storage">&#182;</a></h1><p>Learn about Steps before learning this page.</p>
+<h1 id="Storage">Storage<a class="anchor-link" href="#Storage"></a></h1><p>Learn about Steps before learning this page.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Variables">Variables<a class="anchor-link" href="#Variables">&#182;</a></h2><p>Programs often store things, and then get them for use later. Say we wanted to put socks into one drawer, and shoes in another drawer.</p>
+<h2 id="Variables">Variables<a class="anchor-link" href="#Variables"></a></h2><p>Programs often store things, and then get them for use later. Say we wanted to put socks into one drawer, and shoes in another drawer.</p>
 <p>Then we want to see what is in the drawers. The print() steps will show what is in the drawers. Both drawer1 and drawer2 below are called "variables". It is a fancy name meaning that they can change and hold different things at different times.</p>
 <p>The equal sign is not like what you may have seen in math. It will be explained later.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">drawer1</span> <span class="o">=</span> <span class="s1">&#39;socks&#39;</span>
@@ -47,16 +54,38 @@ background: #f0f0f0;
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>socks
+shoes
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p>The drawer1 can be set to socks, and then set to elephant. Notice that the socks are erased, so the program does not know anything about socks when the steps are completed.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">drawer1</span> <span class="o">=</span> <span class="s1">&#39;socks&#39;</span>
@@ -72,10 +101,32 @@ background: #f0f0f0;
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>elephant
+shoes
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Equal-Sign">Equal Sign<a class="anchor-link" href="#Equal-Sign">&#182;</a></h2><p>In programming, someone chose the equal sign to mean something about moving things from one storage place to another. Someone chose a key from the keyboard to mean this. They could have used another key, or even a word.</p>
+<h2 id="Equal-Sign">Equal Sign<a class="anchor-link" href="#Equal-Sign"></a></h2><p>In programming, someone chose the equal sign to mean something about moving things from one storage place to another. Someone chose a key from the keyboard to mean this. They could have used another key, or even a word.</p>
 <p>It might have been more clear to type:</p>
 <pre>
    drawer1 &lt;- 'socks'".
@@ -83,10 +134,10 @@ background: #f0f0f0;
 <p>Things on the right side of the equal sign get copied to the left side, and the left side doesn't change.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">drawer1</span> <span class="o">=</span> <span class="s1">&#39;socks&#39;</span>
@@ -108,6 +159,32 @@ background: #f0f0f0;
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>before:
+socks
+shoes
+after:
+shoes
+shoes
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
@@ -117,7 +194,7 @@ background: #f0f0f0;
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Numbers">Numbers<a class="anchor-link" href="#Numbers">&#182;</a></h2><p>The drawers can be renamed and the results are the same.</p>
+<h2 id="Numbers">Numbers<a class="anchor-link" href="#Numbers"></a></h2><p>The drawers can be renamed and the results are the same.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -210,7 +287,7 @@ shoes
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Lists">Lists<a class="anchor-link" href="#Lists">&#182;</a></h2><p>A list is something that holds many variables, but are accessed using numbers. So the list is like drawers in a dresser. The print steps can show what all drawers contain.</p>
+<h2 id="Lists">Lists<a class="anchor-link" href="#Lists"></a></h2><p>A list is something that holds many variables, but are accessed using numbers. So the list is like drawers in a dresser. The print steps can show what all drawers contain.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -219,7 +296,8 @@ shoes
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Tell Python that this is a list by using &quot;[]&quot;. Initialize the 3 variables with 0</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Tell Python that this is a list by using &quot;[]&quot;.</span>
+<span class="c1"># Initialize the 3 variables with 0</span>
 <span class="n">dresser</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span>    
 
 <span class="nb">print</span><span class="p">(</span><span class="n">dresser</span><span class="p">)</span>

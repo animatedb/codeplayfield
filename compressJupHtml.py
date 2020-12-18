@@ -1,5 +1,6 @@
 import os
 import sys
+import shutil
 
 # To save a Jupyter html, 
 
@@ -15,20 +16,21 @@ def compressJupHtml(filename:str) -> None:
         with open(outFilename, 'w') as outFile:
             for line in inFile:
                 if '<!-- Compressed Jupyter File -->' in line:
-                    doModification = True
+                    doModification = False
                     break
                 if '<style' in line:
                     copy = False
                 if copy:
+                    line = line.replace('&#182;', '')
                     outFile.write(line)
                 if '<!-- End of mathjax configuration' in line:
                     copy = True
                     outFile.write(getStyle())
                     outFile.write('\n</head>\n')
     if doModification:
-        print('copyfile')
-    else:
-        print('deletefile')
+        print('Modified file', filename)
+        shutil.copyfile(outFilename, inFilename)
+    os.remove(outFilename)
 
 def getStyle():
     style = [
@@ -40,14 +42,24 @@ def getStyle():
         'border-radius: 0px;',
         'background: #f0f0f0;',
         '}',
+
+        'body{',
+#        'line-height:1.28581;',
+        'line-height:1.6;',
+#        'font-weight:400;',
+        'font-size:14;',
+        'font-weight:400;',
+        'font-family:-apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",',
+        '"Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", "Icons16", sans-serif;',
+        '}',
         '</style>',
         ]
     return '\n'.join(style)
 
 
-#compressJupHtml('Images')
+compressJupHtml('Images')   # No execute
 #compressJupHtml('Loops')
-#compressJupHtml('Sound')
-#compressJupHtml('Steps')
-compressJupHtml('Storage')
-#compressJupHtml('Values')
+compressJupHtml('Sound')    # No execute - No code yet
+compressJupHtml('Steps')    # No execute - Has code, but no results
+compressJupHtml('Storage')  # Execute
+compressJupHtml('Values')  # Execute
