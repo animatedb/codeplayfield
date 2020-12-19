@@ -57,9 +57,11 @@ def getStyle():
     return '\n'.join(style)
 
 
-compressJupHtml('Images')   # No execute
-#compressJupHtml('Loops')
-compressJupHtml('Sound')    # No execute - No code yet
-compressJupHtml('Steps')    # No execute - Has code, but no results
+# Execute means that the code should be executed in Jupyter before exporting as html.
+compressJupHtml('Flow')     # Execute
+compressJupHtml('Images')       # No execute
+compressJupHtml('Loops')    # Execute
+compressJupHtml('Sound')        # No execute - No code yet
+compressJupHtml('Steps')        # No execute - Has code, but no results
 compressJupHtml('Storage')  # Execute
-compressJupHtml('Values')  # Execute
+compressJupHtml('Values')   # Execute

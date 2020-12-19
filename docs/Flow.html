@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Flow</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+
+
+
+<!-- Compressed Jupyter File --><style type="text/css">
+.jp-InputArea-editor {border-radius: 0px;
+background: #f0f0f0;
+}
+body{
+line-height:1.6;
+font-size:14;
+font-weight:400;
+font-family:-apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+"Oxygen", "Ubuntu", "Cantarell", "Open Sans", "Helvetica Neue", "Icons16", sans-serif;
+}
+</style>
+</head>
+<body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
+
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Flow">Flow<a class="anchor-link" href="#Flow"></a></h1><p>Sometimes the code that is running behaves like walking along a path. At some point, there could be a branch, and you can make a decision about which path to take. If it is cold, then maybe the path that is in the sun would be a good choice.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The following code shows the idea of branching.</p>
+<p>The key '&gt;' means "greater than" or for positive numbers, means larger than.
+The lines with spaces before them are only run when the if line above them is really true. Spaces are important in Python.</p>
+<p>This diagram shows the path in the code when boxA is set equal to 3. The check for "boxA &gt; 2" is true because boxA is 3.<br>
+<img src="../docs/images/FlowVal3.svg"></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">boxA</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">if</span> <span class="n">boxA</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boxA is greater than 2&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">boxA</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boxA is greater than 5&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is always displayed&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>boxA is greater than 2
+This is always displayed
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>When the value of boxA is set to 10, then the path taken is shown here.<br>
+<img src="../docs/images/FlowVal10.svg"></p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">boxA</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">boxA</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boxA is greater than 2&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">boxA</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boxA is greater than 5&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is always displayed&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>boxA is greater than 2
+boxA is greater than 5
+This is always displayed
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>What happens when boxA is set to 1?</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Other-Checks">Other Checks<a class="anchor-link" href="#Other-Checks"></a></h2><p>The check to see if something is equal to something else is with "==". A single "=" means "set", and a double "=" means "is equal?"</p>
+<p>A "!" means "not". So "!=" means "is it not equal?"</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">boxA</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">if</span> <span class="n">boxA</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boxA is equal to 5&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">boxA</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boxA is equal to 3&#39;</span><span class="p">)</span>   <span class="c1"># This does not display if boxA is set to 5.</span>
+<span class="k">if</span> <span class="n">boxA</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;boxA is not equal to 6&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>boxA is equal to 5
+boxA is not equal to 6
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Here is a table of the checks.</p>
+<table border="1">
+    <tr><th>Key</th><th>Meaning</th></tr>
+    <tr><td>&gt;</td><td>is greater than</td></tr>
+    <tr><td>&lt;</td><td>is less than</td></tr>
+    <tr><td>=</td><td>is equal</td></tr>
+    <tr><td>!=</td><td>is not equal</td></tr>
+    <tr><td>&gt;</td><td>is greater or equal</td></tr>
+    <tr><td>&lt;</td><td>is less or equal</td></tr>
+</table>
+</div>
+</div>
+</body>
+
+
+
+
+
+
+
+</html>
