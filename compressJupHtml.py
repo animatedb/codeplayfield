@@ -41,7 +41,15 @@ def getStyle():
 #          border: var(--jp-border-width) solid var(--jp-cell-editor-border-color);
         'border-radius: 0px;',
         'background: #f0f0f0;',
+        # Add a margin to make the code area stand out differently.
+        'margin: 3%',
         '}',
+
+        # Make input prompt invisible.
+        '.jp-InputPrompt {',
+        'opacity:0%;',
+        '}',
+
 
         'body{',
 #        'line-height:1.28581;',
