@@ -1,6 +1,9 @@
 <html>
+<head><meta charset="utf-8" />
+  <link rel="stylesheet" href="Docs.css">
+</head>
 
-
+<body>
 <h2><a name="installpython">Install Python</a></h2>
 Python may already be installed. 
 <p>For Windows, Python can be downloaded from here <a href="https://www.python.org/downloads/windows/">
@@ -182,20 +185,6 @@ Audacity can generate sounds using the Generate menu. There are Generate/Tone,
 Generate/Chirp, etc.
 
 
-<!---- Inkscape ---->
-<h2><a name="installinkscape">Install Inkscape</a></h2>
-Install Inkscape using Synaptic or command line.<br/>
-For Ubuntu:<br/>
-<pre><code>
-  sudo install inkscape
-</code></pre>
-
-<h2><a name="editvectorimage">Edit Vector Image</a></h2>
-Install <a href="#installinkscape">Inkscape</a> using Synaptic or command line.<br/>
-Use File/New to create a new drawing. Inscape is used to edit vector images (such as .svg)
-or shapes and text.
-
-
 <!---- GIMP ---->
 
 <h2><a name="installgimp">Install Gimp</a></h2>
@@ -217,6 +206,7 @@ Search for "ubuntu-restricted-extras" and select it. Then Apply.
 
 <h2><a name="editimage">Edit Image</a></h2>
 Open an image file in <a href="#opengimp">Gimp</a>.<br/>
+Vector images can be edited using <a href="Inkscape.html">Inkscape</a>
 <a href="Images.html">Image Explanation</a><br/>
 <p>
 </p>
@@ -353,5 +343,6 @@ To extract frames, first open a <a href="#openterminal">terminal</a>, and then r
 /usr/bin/ffmpeg -i "/<i>dir</i>/game/bug-data/Bug.mp4" /<i>dir</i>/game/bug-data/Bug/frame_%03d.png
 </code></pre>
 The <i>dir</i> in italics must be replaced with your actual folder.
+</body>
 </html>
 

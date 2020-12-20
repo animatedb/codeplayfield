@@ -1,0 +1,172 @@
+<html>
+<head>
+  <link rel="stylesheet" href="Docs.css">
+</head>
+
+<body>
+<h1>Inkscape</h1>
+<p>
+Inkscape allows editing vector based drawings. Vector based means that everything is drawn using
+lines. Shapes are drawn by lines, and can be filled with colors.
+</p>
+An example of vector based image is:
+<br><img src="images/2-fish-1.png" width="200"><br>
+Another example is:
+<br><img src="images/Loop.svg" width="200"><br>
+
+
+<h2><a name="installinkscape">Install Inkscape</a></h2>
+For Windows:<br/>
+<a href="https://inkscape.org/release">https://inkscape.org/release</a>
+<p>
+For Ubuntu:<br/>
+Install Inkscape using Synaptic or command line.<br/>
+</p>
+<p>
+<pre><code>
+  sudo install inkscape
+</code></pre>
+</p>
+
+<h2><a name="editvectorimage">Edit Vector Image</a></h2>
+<p>
+Install <a href="#installinkscape">Inkscape</a> using Synaptic or command line.<br/>
+</p><p>
+Use File/New to create a new drawing. Inkscape is used to edit vector images (such as .svg)
+or shapes and text.
+</p>
+
+
+<h2>Free drawing (without a grid)</h2>
+<p>
+The left hand side shows the icons for choosing a tool.
+</p>
+Most important tools:
+<table border="1">
+<tr><td>Pointer</td><td>Click mouse button to select lines, shape or text. Press mouse
+button, move mouse and release to select an area around objects.</td></tr>
+<tr><td>Point Pointer</td><td>Move points of shapes</td></tr>
+<tr><td>Rectangle</td><td>Press mouse button, move mouse and release to draw a rectangle.</td></tr>
+<tr><td>Circle</td><td>Press mouse button, move mouse and release to draw a rectangle.</td></tr>
+<tr><td>Pencil</td><td>Click mouse button at two different points to draw a line.</td></tr>
+<tr><td>A</td><td>Draw some text</td></tr>
+</table>
+<p>
+Clicking on a shape allows moving the shape or changing the size.
+When a shape is selected, the Fill and Stroke window can be used to set colors, and
+add arrows to lines or to draw lines with dashes.
+</p>
+<p>
+The shift key can be held down to select multiple shapes. Then colors can be changed for many shapes at a time.
+</p>
+<p>When a new drawing is created, a rectangle is drawn on the screen that shows the
+size of the image that will be saved. To change the size of the drawing, use the menu
+File/Document Properties and click on "Resize page to content...". Then
+click on "Resize page to drawing or selection".</p>
+
+
+<h2>Drawing with a grid</h2>
+Drawing with a grid allows making drawings where things are aligned to each other
+and have even spacing.
+<p>
+It is possible to align things without a grid using the "Align and Distribute" icon
+and window. The icon is near the top right icons. It allows aligning many selected
+objects to some place.
+</p>
+<ul>
+<li>Turn on the grid.
+<li>Select the menu File/Document Properties.</li>
+<li>Click on "Grids"</li>
+<li>Click "New"</li>
+<li>Close the screen.</li>
+</ul>
+<p>
+Inkscape is a little strange that the grid changes depending on the zoom. The zoom
+can be changed using "Shift +" and "Shift -". It is better to zoom in when drawing
+smaller shapes.
+</p>
+<p>
+The icons that control the snapping between shapes or to the grid are on the
+right side of the screen. 
+</p>
+<p>
+Sometimes it is difficult to snap something like text to the grid. It helps to
+turn off the bounding box snap and leave the text snap on. So get used to changing
+snap icons often.
+</p>
+
+The common things that can be snapped are:
+<table border="1">
+<tr><td>Bounding boxes</td><td>Snap to corners or edges</td></tr>
+<tr><td>Paths and nodes</td><td>Nodes are points that define paths.</td></tr>
+<tr><td>Text</td><td>The base line of the text.</td></tr>
+<tr><td>Grid</td><td>Snap between other things above and the grid.</td></tr>
+</table>
+draw to grid
+	- use icons on right side of drawing
+		- "A" icon sets whether to use text anchor
+		- top icons choose which part of bounding rect to snap to grid
+
+when done
+	- File/Document Properties
+	- Resize page to drawing or selection
+
+
+<h2>Draw Sine Wave (3 sines)</h2>
+Complex shapes can be generated using the menu Extensions/Render.
+For example, to draw a sine wave, select Extensions/Render/FunctionPlotter
+and enter the following parameters:
+<pre>
+	Start X = 0
+	End X = 3
+	Y value of rect bottom = 0
+	Y value of rect top = 1
+	Number of samples = 17
+	Uncheck everything except
+		Check Multiple X range by 2*pi
+		Calculate first derivative numerically
+	Function = sin(x)
+	First derivative = x
+</pre>
+
+<h2>Draw Clock</h2>
+This explains how to draw tic marks around a circle.
+
+Draw the outside of the clock.
+<ul>
+<li>Draw circle, set size 100x100 and position x=50,y=150</li>
+<li>Copy circle, set size 96x96 and position x=52, y=152</li>
+</ul>
+
+Make tick marks
+<ul>
+<li>Click align and distribute icon (three bars) at top right icons</li>
+<li>Make a rectangule to use as the tic mark</li>
+<li>Select the smaller circle and shift click and select marker</li>
+<li>In Align and Distribute</li>
+  <ul>
+  <li>Click center icon in Align section</li>
+  <li>Click align top icon</li>
+  </ul>
+<li>Click on snap icons at right of screen and turn on all snap icons</li>
+<li>Click on top ruler and drag and drop into center of circle</li>
+<li>Do the same for the left ruler</li>
+<li>Select marker click on it until + appears in the middle</li>
+<li>Drag the plus out of the rectangle and to center of circle</li>
+<li>Select the menu Edit/Clone/Create Tiled Clones
+  <pre>
+	Shift: Shift X=0
+	Shift: Shift Y=-100
+	Rotation: Angle=6
+	Rotation: Rows,columns=60x1
+  </pre>
+  </li>
+<li>Make a clock hand</li>
+<ul>
+  <li>Click at a point at one end, view the coordinates at some point along the line</li>
+  <li>Make a line to the desired coordinates.</li>
+</ul>
+</ul>
+
+</html>
+
