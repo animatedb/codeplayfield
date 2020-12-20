@@ -23,21 +23,38 @@ The demo that created this allows using the arrow keys to move people around
 depending on where they are in the scenes.</p><br>
 <video width="400"><source src="images/DollSceneScreencast.mp4" type="video/mp4"></video><br>
 
+<p>
 The software can be run in few different ways.
+</p>
 <ul>
+<li>Use Jupyter Notebooks. Installing packages is simpler since it is done
+within the notebooks.</li>
 <li>Use a simple editor and run Python using a terminal or from Idle.
 This documentation mostly describes using Ubuntu. Some small changes
 may be required to run on Windows or other operating systems.
 </li>
-<li>Use Jupyter Notebooks. Installing packages is simpler since it is done
-within the notebooks.</li>
 </ul>
 </p>
-Install Jupyter Notebooks for Ubuntu using Synaptic or:
+
+<b>Install Jupyter</b><br>
+The recommended method to install Jupyter is to first install <a href="https://www.liquidweb.com/kb/install-pip-windows/">pip</a>.<br>
+Install Jupyter using <a href="https://jupyter.org/install">https://jupyter.org/install</a> and use the pip method.
+
+<p style="margin-left:1%">
+<br><b>Run Jupyter</b><br>
 <pre>
   cd codeplayfield
-  ~/.local/bin/jupyter-notebook
+  jupyter-notebook CodePlayField.ipynb
 </pre>
+<p style="margin-left:1%">
+In Ubuntu, jupyter notebooks is normally installed at "~/.local/bin/".
+</p>
+<pre>
+  cd codeplayfield
+  ~/.local/bin/jupyter-notebook CodePlayField.ipynb
+</pre>
+</p>
+
 <h2>Contents</h2>
 <table border="1">
 <tr><th>Startup</th><th>Programming</th><th>Audio/Visual</th><th>Tools</th></tr>
