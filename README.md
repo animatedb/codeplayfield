@@ -1,7 +1,8 @@
 
 # CodePlayField
 
-A visual environment to learn programming using Python 3.
+CodeFieldPlay provides a way to learn audiovisual editing and programming using Python 3
+using many simple demonstration programs.
 
 ## Contents
 
