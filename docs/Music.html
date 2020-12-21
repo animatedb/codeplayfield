@@ -1,0 +1,161 @@
+<html>
+<head>
+  <link rel="stylesheet" href="Docs.css">
+</head>
+<BODY>
+<h1>Music</h1>
+<!-- October 24, 2007 D.C.Blaha -->
+<!-- Last update: 2021 -->
+<p/>
+This document describes various software and hardware.  All of the software used here is free and is very high quality.  Most of this document was tested using Ubuntu.
+<p>
+Some parts of learning sound can be very difficult because there is so much confusing information on the internet, and it is difficult to know which parts relate to which.
+</p>
+The following programs are useful to create sound.
+<table border="1">
+  <tr><td>Ardour</td><td>Recording and mixing</td></tr>
+  <tr><td>Fluidsynth</td><td>Synthesizes sounds that can be played from Rosegarden</td></tr>
+  <tr><td>Hydrogen</td><td>Drum machine</td></tr>
+  <tr><td>Jack</td><td>Linux audio connections</td></tr>
+  <tr><td>Lilypond</td><td>Music engraving (printing)</td></tr>
+  <tr><td>Rosegarden</td><td>Music editing software</td></tr>
+  <tr><td>Rythmbox</td><td>Audio player</td></tr>
+  <tr><td>Soundfont</td><td>Synthesis for MIDI</td></tr>
+  <tr><td>Swami</td><td>Combines soundfonts</td></tr>
+</table>
+
+<h3>Loading some initial software</h3>
+For Windows, download from <a href="https://www.rosegardenmusic.com/">
+https://www.rosegardenmusic.com/</a>.<br>
+For Ubuntu, use the package manager or:
+<pre>
+   sudo apt-get install rosegarden
+</pre>
+
+This application has a notation editor that can be used to create music, but does not play music by itself.  For it to play music, use the package manager to download fluidsynth unless you have a very special sound card or MIDI support.  See the hardware section in this case.
+<p/>
+Fluidsynth is a software synthesizer. <a href="http://freshmeat.net/projects/fluid/">Fluidsynth</a> requires a sound font in order to make sounds.  See the sound font section below for more information.
+
+<ul>
+<li>Install fluidsynth and qsynth
+  <pre>
+    sudo apt-get install fluidsynth</pre>
+  </li>
+<li>Install a soundfont library
+  <pre>
+    sudo apt-get install fluid-soundfont-gs</pre>
+</li>
+<li>Run qsynth in a terminal
+<ul>
+<li>Select Setup/MIDI and Enable MIDI Input</li>
+<li>Select Setup/Audio and set Audio Driver to "alsa"</li>
+<li>Select Soundfonts and Open and select FluidR3_GM.sf2</li>
+</ul>
+<li>While qsynth is running, run Rosegarden</li>
+</li>
+
+
+<li>Run Rosegarden and select menu Studio/Manage MIDI Devices. Set MIDI Playback to
+send data to Synth input port.</li>
+<li>Use pavucontrol to select headphone or line output.</li>
+</ul>
+</ul>
+Jack does not have to be used to get this software running together.
+
+<p/>
+The software section below lists additional software that can be downloaded for free.  They are all very good, high quality applications.
+
+<h3>Music Software Diagram</h3>
+The following diagram shows some of the things that can be done with these programs.  Much more than this can be done once Jack is used along with other music hardware.  This diagram shows a very simple flow of the audio information.  Many samples and scores can be downloaded from the internet.  This means that a microphone or other music hardware is not required.<br/>
+<img src="MusicDrawing.png"></img>
+
+
+<h2>Software</h2>
+
+<h3>Downloading Software</h3>
+
+<h3>Software</h3>
+It is easiest to download these in Ubuntu using the package manager. Simply search for the name and then select the package to download.
+<ul>
+<li><a href="http://www.alsa-project.org/main/index.php/Main_Page">ALSA</a> - Linux sound architecture</li>
+<li><a href="http://audacity.sourceforge.net/">Audacity</a> - Audio editor</li>
+<li><a href="http://sox.sourceforge.net/">Sox</a> - Converts midi to wav</li>
+<li><a href="http://freshmeat.net/projects/fluid/">Fluidsynth</a> - Audio synthesizer used by RoseGarden</li>
+<li><a href="http://www.hydrogen-music.org/">Hydrogen"</a> - drum machine software</li>
+<li><a href="http://jackaudio.org/">Jack</a> - Audio software connections</li>
+<li><a href="http://lilypond.org">Lilypond</a> - Sheet music generation</li>
+<li><a href="http://www.rosegardenmusic.com/">RoseGarden</a> - Score editing and audio sequencing</li>
+<li><a href="http://swami.resonance.org/trac">Swami</a> - Sound font editor</li>
+<li><a href="http://www.ubuntu.com/">Ubuntu</a> - Operating system</li>
+</ul>
+
+
+<h3>Sound Fonts</h3>
+A sound font file is a file that contains waveforms for many instruments.  Each sound file may contain different instruments, and different sounds for each instrument.  There is sort of a MIDI standard, so that some sound font files will contain certain instruments at certain locations, and so that different songs can be played using a sort of standard soundfont.
+<p/>
+There are many sound fonts that can be downloaded from the internet.  Every sound file is different, choosing a good one can make a huge difference.  Most places recommend the Musica Theoria 2 sound font from hammersound, but I have never been able to download this file.  So I tried some Gort sound files, and these sounded terrible on my system.  Eventually I found one from <a href="http://josefhuber.com">http://josefhuber.com</a> that was better.  But the one I like most is the PC51f.sf2 from <a href ="http://www.personalcopy.com/home.htm">http://www.personalcopy.com/home.htm</a>.
+
+<h3>MIDI Files</h3>
+MIDI files only contain the notes/timing of the music.  The notes are read from the file, and used with a sound font to create sound.
+I found that this site is very good and fast for classical midi downloads.
+	<a href="http://www.classicalmidi.co.uk">http://www.classicalmidi.co.uk</a>
+
+<h3>Audacity</h3>
+Audacity can edit recorded or downloaded audio samples. It can read and write many file formats.
+To export AIFF samples, use the Edit/Preferences menu to select the file formats.
+<p/>
+Audacity allows creating Lisp type Nyquist programs.  There are instructions here
+<a href="http://audacity.sourceforge.net/help/nyquist">http://audacity.sourceforge.net/help/nyquist</a>
+
+<h3>FluidSynth</h3>
+FluidSynth only needs to be used if there is no hardware available that can do synthesis.
+See the hardware section for more information. Fluidsynth can load sound font files.  See the sound font section for more information. A graphical interface to fluidsynth is called qsynth for anybody that doesn't want to use a shell/command prompt.  I have actually found this harder than using fluidsynth from a terminal.  I run fluidsynth with the following command line.
+
+<pre>
+    fluidsynth <i>soundfont</i>.sf2
+</pre>
+
+After fluidsynth has loaded a sound font file, it is possible to play a note
+using the following:
+
+<pre>
+    noteon 5 77 108
+</pre>
+
+<h3>Lilypond</h3>
+Lilypond will engrave high quality sheet music. Rosegarden will output files that lilypond can use to print the music.  Lilypond does not have a user interface since it just reads the input files.
+
+<h3>RoseGarden</h3>
+RoseGarden is an awesome application.
+
+To make sound, it can use Jack to route the MIDI output into some other MIDI device.  If there is no MIDI hardware or hardware synthesizer card connected to the PC, then it is possible to run fluidsynth along with Rosegarden to output sound.
+<p/>
+An easy way to get started is to download some MIDI (files with .mid extension) file from the internet, and use File/Import to load it into RoseGarden.  Then double click on the tracks to edit the music.
+
+<h3>Sox</h3>
+To use sox, create a file named midi2avi with the following.
+<pre>
+   #!/bin/sh
+   # convert midi to avi
+
+   fluidsynth -i -a file <i>soundfont</i>.sf2 <i>midifile</i>.mid
+   sox -r 44100 -w -c 2 -s fluidsynth.raw fluidsynth.wav
+</pre>
+Then in a command shell, enter "sh midi2avi".  At the moment, the wave files produced only have a limited number of voices.  I am not sure if this is the cause of Rosegarden or
+or Sox.  I may try Timidity at some point to resolve this problem.
+
+<h3>Swami</h3>
+Swami is not the highest quality program, but does do the job well when it is working. The user interface is not polished, and I have had the program crash.
+<p/>
+At this time, Swami is not added to the Ubuntu "Sound & Video" menu.  To do this, go to System/Preferences/Main Menu, and click on "Sound & Videos", and press the New Item button.  For the command, enter or browse to /usr/bin/swami.
+<p/>
+The easiest way to get started is to open an existing sound font file (*.sf2), and then go to Samples/User and select a sound.  Then clicking on the keyboard will make that sound.
+<p/>
+The hierarchy is that Presets that are Melodic are made up of Instruments.  Instruments are made up of Samples.  This allows that samples can be taken for different frequency or note ranges.  The Swami UI is a bit strange, since to add a sample to an instrument, the sample must be selected, and then the instrument must be right clicked, and then select paste.  In other words, whatever is currently selected can be pasted.
+<p/>
+Swami can read AIFF are audio sample files that can be downloaded from the internet.  Audacity can also read and write AIFF samples.
+
+</body>
+
+</html>
+
