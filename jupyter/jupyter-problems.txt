@@ -1,4 +1,4 @@
-jupyter problems
+jupyter problems - most of these are jupyter labs
 
 - The user interface is difficult for kids. How will they know "Restart the kernal"?
   Then the thing where there are modes for fields, etc. Could be confusing.

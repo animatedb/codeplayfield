@@ -21,8 +21,9 @@ using many simple demonstration programs.
 - Install [Jupyter](https://jupyter.org/install) using the "Install with pip" method
 - There are many ways to run Jupyter.
   - 'jupyter-notebook CodePlayField.ipynb'
-  - 'jupyter-notebook'
   - '~/.local/jupyter-notebook CodePlayField.ipynb'.
+  - 'jupyter lab'
+  - 'jupyter lab CodePlayField.ipynb'
 
 ## Project Goals
 
