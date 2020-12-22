@@ -87,7 +87,7 @@ outsideDoorRectWidth = (110-100) * outsideXScale
 outsideDoorRect = pg.Rect(outsideDoorRectLeft, 0, outsideDoorRectWidth, 600)
 # Left side of scene
 leftSideRect = pg.Rect(0, 0, 50, 600)
-rightSideRect = pg.Rect(GameSize[0]-50, 0, 50, 600)
+rightSideRect = pg.Rect(GameSize[0]-20, 0, 50, 600)
 
 class HouseOutsideScene(scenes.Game2dScene):
     def __init__(self):
@@ -95,15 +95,13 @@ class HouseOutsideScene(scenes.Game2dScene):
         house = self.addObject(base.Path(data_dir, 'House/house.jpg'))
         house.runRules([rule.SetSize(GameSize)])
 
-    def checkEvent(self, game, event) -> None:
+    def checkEvent(self, event) -> None:
         if dollGame.checkKeyDown(event, pg.K_UP):
             if dollGame.activeObject.touchesRect(outsideDoorRect):
                 sceneDirector.showScene('InsideDownstairs')
-        elif dollGame.checkKeyDown(event, pg.K_LEFT):
+#        elif dollGame.checkKeyDown(event, pg.K_LEFT):
+        else:   # Handle timer
             if dollGame.activeObject.touchesRect(leftSideRect):
-                sceneDirector.showScene('Airport')
-        elif dollGame.checkKeyDown(event, pg.K_RIGHT):
-            if dollGame.activeObject.touchesRect(rightSideRect):
                 sceneDirector.showScene('Airport')
 
     def enterScene(self):
@@ -132,7 +130,7 @@ class HouseInsideDownstairsScene(scenes.Game2dScene):
         chair.setLayer(2)   # The chair will be drawn on top of any lower layer object.
         chair.flipX()
 
-    def checkEvent(self, game, event) -> None:
+    def checkEvent(self, event) -> None:
         if dollGame.checkKeyDown(event, pg.K_UP):
             if dollGame.activeObject.touchesRect(insideDoorRect):
                 sceneDirector.showScene('Outside')
@@ -154,7 +152,7 @@ class HouseInsideUpstairsScene(scenes.Game2dScene):
         chair.setLayer(2)   # The chair will be drawn on top of any lower layer object.
         chair.flipX()
 
-    def checkEvent(self, game, event) -> None:
+    def checkEvent(self, event) -> None:
         if dollGame.checkKeyDown(event, pg.K_DOWN):
             if dollGame.activeObject.touchesRect(insideStairsRect):
                 sceneDirector.showScene('InsideDownstairs')
@@ -169,12 +167,10 @@ class AirportScene(scenes.Game2dScene):
         boy = self.addObject(base.Path(data_dir, 'BoyWalkingTransSmall.png'))
         boy.setPosition(GameSize[0]*1/4, 400)
 
-    def checkEvent(self, game, event) -> None:
-        if dollGame.checkKeyDown(event, pg.K_RIGHT):
+    def checkEvent(self, event) -> None:
+#        if dollGame.checkKeyDown(event, pg.K_RIGHT):
+        # For any event like timer, check  the rectangle.
             if dollGame.activeObject.touchesRect(rightSideRect):
-                sceneDirector.showScene('Outside')
-        elif dollGame.checkKeyDown(event, pg.K_LEFT):
-            if dollGame.activeObject.touchesRect(leftSideRect):
                 sceneDirector.showScene('Outside')
 
 
@@ -188,6 +184,9 @@ def main():
     sceneDirector.showScene('Outside')
 
     dollGame.addObjects(sceneDirector.getObjects())
+    # Set a timer event for every 1/4 second. This allows checkEvent to be
+    # called every once in a while.
+    dollGame.setTimerEvent(250)
 
     # Main Loop
     going = True
@@ -195,7 +194,7 @@ def main():
         # Handle Input Events
         for event in dollGame.getEvent():
             dollGame.checkEvent(event)
-            sceneDirector.checkEvent(dollGame, event)
+            sceneDirector.checkEvent(event)
 
             if event.type == pg.QUIT:
                 going = False

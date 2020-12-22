@@ -51,6 +51,9 @@ class Game2d:
 
         self.clock.tick(clockTick)
 
+    def setTimerEvent(self, timeMs:int, eventId=pg.USEREVENT+1):
+        pg.time.set_timer(eventId, timeMs)
+
     def checkKeyDown(self, event, key):
         try:
             key = ord(key)

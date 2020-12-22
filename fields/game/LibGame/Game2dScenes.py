@@ -30,7 +30,7 @@ class Game2dScene:
     def leaveScene(self) -> None:
         self.showSceneImages(False)
 
-    def checkEvent(self, game, event) -> None:
+    def checkEvent(self, event) -> None:
         pass
 
 
@@ -39,6 +39,7 @@ class SceneDirector:
         # Make a dict for easy name lookup
         self.scenes:Dict[str, Game2dScene] = {}
         self.scene = None
+        self.lastSceneName = None
 
     def addScenes(self, scenes:List[Game2dScene]) -> None:
         for scene in scenes:
@@ -52,10 +53,12 @@ class SceneDirector:
         return objects
 
     def showScene(self, sceneName:str) -> None:
-        if self.scene:
-            self.scene.leaveScene()
-        self.scene = self.scenes[sceneName]
-        self.scene.enterScene()
+        if sceneName != self.lastSceneName:
+            if self.scene:
+                self.scene.leaveScene()
+            self.scene = self.scenes[sceneName]
+            self.scene.enterScene()
+            self.lastSceneName = sceneName
 
-    def checkEvent(self, game, event):
-        self.scene.checkEvent(game, event)
+    def checkEvent(self, event):
+        self.scene.checkEvent(event)
