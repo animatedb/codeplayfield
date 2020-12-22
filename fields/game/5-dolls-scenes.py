@@ -49,7 +49,8 @@ def main():
     keyText.runRules([rule.SetPosition(10, 10), rule.SetSize(350, 13)])
 
     chair = obj.Object(base.Path(data_dir, 'chair.png'))
-    chair.setPosition(1000, 125)     # Hide the chair by moving off screen
+    chair.showImage(False)
+    chair.setPosition(700, 129)
     chair.setSize(180, 170)
     chair.setLayer(1)   # The chair will be drawn on top of any lower layer object.
     chair.flipX()
@@ -113,9 +114,9 @@ def main():
                         x, y = activeObject.getPosition()
                         activeObject.setPosition(x, TopFloor)
                 if scenes.getImageIndex() == Inside:
-                    chair.setPosition(700, 129)  # Show the chair by moving on screen
+                    chair.showImage()
                 else:
-                    chair.setPosition(1000, 125)     # Hide the chair by moving off screen
+                    chair.showImage(False)
             elif dollGame.checkKeyUp(event, 'j') and activeObject == girl:
                 girl.runRules([rule.SetImages(base.Path(data_dir, 'Girl-Jump')),
                     rule.SetSize(150, 500), rule.RunAnimation()])

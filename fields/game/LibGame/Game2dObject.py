@@ -18,6 +18,7 @@ class Object(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self)  # call Sprite intializer
         self.setImages(filePattern)
         self.setPosition(0, 0) # Default to known position
+        self.showImage(True)
         self.direction = 0
         self.initialRotation = 0
         self.imageRotation = 0
@@ -75,6 +76,10 @@ class Object(pg.sprite.Sprite):
             image = base2d.LoadImage(filepath)
             self.images.append(image)
             self.origImages.append(image.copy())
+
+    # If show is False, then hide the image.
+    def showImage(self, show=True):
+        self.showImages = show
 
     def rotateImageInitial(self, initialAngle) -> None:
         self.initialRotation = initialAngle        

@@ -36,17 +36,22 @@ class Game2d:
         self.allObjects = pg.sprite.LayeredUpdates()
 
     def addObjects(self, objects):
-#        self.allObjects = pg.sprite.RenderPlain(objects)
-#        pg.sprite.RenderPlain(objects)
         self.allObjects.add(objects)
 
     def update(self, clockTick:int):
         """ Runs rules for all objects that were added with addObjects """
         self.allObjects.update()
 
-        # Draw Everything
-        self.screen.blit(self.background, (0, 0))
-        self.allObjects.draw(self.screen)
+        # Clear the background surface
+#        self.screen.blit(self.background, (0, 0))
+        # LayeredUpdates.draw() calls pygame.Surface.surface.blit() for all self.sprites()
+        # It returns a list of changed areas.
+        # The problem is that there doesn't appear to be any way to prevent
+        # drawing of some sprites.
+#        self.allObjects.draw(self.screen)
+        for obj in self.allObjects:
+            if obj.showImages:
+                self.screen.blit(obj.image, obj.rect)
         pg.display.flip()
 
         self.clock.tick(clockTick)
