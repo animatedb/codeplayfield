@@ -5,11 +5,6 @@ import pygame as pg
 from typing import List, Optional, Tuple, Union
 import LibGame.Game2dBase as base2d
 
-if not pg.font:
-    print('Warning, fonts disabled')
-if not pg.mixer:
-    print('Warning, sound disabled')
-
 class Game2d:
     def __init__(self, caption:str, size:Optional[Tuple[int, int]]=None):
         # Initialize Everything

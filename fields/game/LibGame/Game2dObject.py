@@ -6,11 +6,6 @@ import pygame.freetype
 from typing import List, Optional, Tuple, Union
 import LibGame.Game2dBase as base2d
 
-if not pg.font:
-    print('Warning, fonts disabled')
-if not pg.mixer:
-    print('Warning, sound disabled')
-
 
 class Object(pg.sprite.Sprite):
     def __init__(self, filePattern:Union[List, str]):

@@ -28,8 +28,8 @@ def main():
     dollGame = game.Game2d('Scene', gameSize)
 
     # First image is the outside of the house.
-    scenes = obj.Object(base.Path(data_dir, 'House'))
-    scenes.runRules([rule.StopAnimation(), rule.SetSize(gameSize)])
+    house = obj.Object(base.Path(data_dir, 'House'))
+    house.runRules([rule.StopAnimation(), rule.SetSize(gameSize)])
 
     # Top and bottom of doors and stairs don't really matter for this game, so just
     # make them full height of screen.
@@ -65,7 +65,7 @@ def main():
     girl.runRules([rule.StopAnimation(), rule.SetPosition(500, BottomFloor),
         rule.SetSize(100, 300)])
 
-    dollGame.addObjects([scenes, keyText, chair, boy, girl])
+    dollGame.addObjects([house, keyText, chair, boy, girl])
 
     # Main Loop
     activeObject = girl
