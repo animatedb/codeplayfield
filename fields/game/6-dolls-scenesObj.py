@@ -164,10 +164,14 @@ class HouseInsideUpstairsScene(scenes.Game2dScene):
 class AirportScene(scenes.Game2dScene):
     def __init__(self):
         scenes.Game2dScene.__init__(self, 'Airport')
-        house = self.addObject(base.Path('airport-data', 'airport-1000x600.jpg'))
-        house.runRules([rule.SetSize(GameSize)])
-        boy = self.addObject(base.Path(data_dir, 'BoyWalkingTransSmall.png'))
-        boy.setPosition(GameSize[0]*1/4, 400)
+        airport = self.addObject(base.Path('airport-data', 'airport-1000x600.jpg'))
+        airport.runRules([rule.SetSize(GameSize)])
+        child = self.addObject(base.Path(data_dir, 'BoyWalkingTransSmall.png'))
+        child.setPosition(GameSize[0]*1/4, 400)
+
+    def enterScene(self):
+        scenes.Game2dScene.enterScene(self)
+        dollGame.activeObject.runRules([rule.PlaySound('doll-data/trumpets.ogg')])
 
     def checkEvent(self, event) -> None:
 #        if dollGame.checkKeyDown(event, pg.K_RIGHT):
