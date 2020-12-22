@@ -166,12 +166,14 @@ class AirportScene(scenes.Game2dScene):
         scenes.Game2dScene.__init__(self, 'Airport')
         house = self.addObject(base.Path('airport-data', 'airport-1000x600.jpg'))
         house.runRules([rule.SetSize(GameSize)])
+        boy = self.addObject(base.Path(data_dir, 'BoyWalkingTransSmall.png'))
+        boy.setPosition(GameSize[0]*1/4, 400)
 
     def checkEvent(self, game, event) -> None:
         if dollGame.checkKeyDown(event, pg.K_RIGHT):
             if dollGame.activeObject.touchesRect(rightSideRect):
                 sceneDirector.showScene('Outside')
-       if dollGame.checkKeyDown(event, pg.K_LEFT):
+        elif dollGame.checkKeyDown(event, pg.K_LEFT):
             if dollGame.activeObject.touchesRect(leftSideRect):
                 sceneDirector.showScene('Outside')
 
