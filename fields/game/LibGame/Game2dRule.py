@@ -298,6 +298,13 @@ class RunAnimation(Rule):
         self.updateCheckObject()
         self.obj.runAnimation()
 
+class PlaySound(Rule):
+    def __init__(self, filepath:str) -> None:
+        self.sound = base2d.LoadSound(filepath)
+
+    def update(self):
+        self.sound.play()
+
 class MoveLeftRightToLimits(Rule):
     """
     Moves an object between limits, then reverses direction and flips the image.

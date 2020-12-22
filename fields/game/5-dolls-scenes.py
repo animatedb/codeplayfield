@@ -117,7 +117,7 @@ def main():
                     chair.showImage()
                 else:
                     chair.showImage(False)
-            elif dollGame.checkKeyUp(event, 'j') and activeObject == girl:
+            elif dollGame.checkKeyDown(event, 'j') and activeObject == girl:
                 girl.runRules([rule.SetImages(base.Path(data_dir, 'Girl-Jump')),
                     rule.SetSize(150, 500), rule.RunAnimation()])
                 # These rules are run when the jump is finished.
@@ -128,6 +128,10 @@ def main():
                     ]
                 rules = (rule.Jump(-40, 3, jumpDoneRules),)
                 girl.updateRules(rules)
+            elif dollGame.checkKeyDown(event, 'l'):
+                activeObject.runRules([rule.PlaySound('tickle-data/Laughing.wav')])
+            elif dollGame.checkKeyDown(event, 'h'):
+                activeObject.runRules([rule.PlaySound('doll-data/hello-1Kto3K.ogg')])
 
             if event.type == pg.QUIT:
                 going = False

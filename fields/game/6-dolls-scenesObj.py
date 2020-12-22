@@ -60,17 +60,19 @@ class DollGame(game.Game2d):
             self.activeObject.updateRules([rule.StopAnimation()])
         elif self.checkKeyDown(event, pg.K_UP):
             self.activeObject.updateRules([rule.StopAnimation()])
-        elif self.checkKeyUp(event, 'j') and self.activeObject == girl:
-            girl.runRules([rule.SetImages(base.Path(data_dir, 'Girl-Jump')),
-                rule.SetSize(150, 500), rule.RunAnimation()])
+        elif self.checkKeyUp(event, 'j') and self.activeObject == self.girl:
+            self.girl.runRules([rule.SetImages(base.Path(data_dir, 'Girl-Jump')),
+                rule.SetSize(100, 300), rule.RunAnimation()])
             # These rules are run when the jump is finished.
             # Go back to left/right images.
             jumpDoneRules = [ rule.SetImages(base.Path(data_dir, 'Girl')),
-                rule.SetSize(150, 400), rule.MoveLeftRight(0),
+                rule.SetSize(100, 300), rule.MoveLeftRight(0),
                 rule.StopAnimation()
                 ]
             rules = (rule.Jump(-40, 3, jumpDoneRules),)
-            girl.updateRules(rules)
+            self.girl.updateRules(rules)
+        elif dollGame.checkKeyDown(event, 'h') and self.activeObject == self.boy:
+            self.activeObject.runRules([rule.PlaySound('doll-data/hello-1Kto3K.ogg')])
 
 
 dollGame = DollGame()
