@@ -173,6 +173,7 @@ class Object(pg.sprite.Sprite):
 
     def flipX(self):
         for index in range(0, len(self.images)):
+            self.origImages[index] = pg.transform.flip(self.origImages[index], 1, 0)
             self.images[index] = pg.transform.flip(self.images[index], 1, 0)
 
     def touchesRect(self, rect):

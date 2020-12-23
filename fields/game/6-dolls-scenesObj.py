@@ -13,6 +13,7 @@ data_dir = "doll-data"
 
 # Define some positions.
 TopFloor = -5   # This is the top floor Y position of the tops of the movable objects.
+NormalPlayerHeight = 300
 BottomFloor = 300
 
 GameSize = (1000, 600)
@@ -62,11 +63,11 @@ class DollGame(game.Game2d):
             self.activeObject.updateRules([rule.StopAnimation()])
         elif self.checkKeyUp(event, 'j') and self.activeObject == self.girl:
             self.girl.runRules([rule.SetImages(base.Path(data_dir, 'Girl-Jump')),
-                rule.SetSize(100, 300), rule.RunAnimation()])
+                rule.SetSize(100, NormalPlayerHeight), rule.RunAnimation()])
             # These rules are run when the jump is finished.
             # Go back to left/right images.
             jumpDoneRules = [ rule.SetImages(base.Path(data_dir, 'Girl')),
-                rule.SetSize(100, 300), rule.MoveLeftRight(0),
+                rule.SetSize(100, NormalPlayerHeight), rule.MoveLeftRight(0),
                 rule.StopAnimation()
                 ]
             rules = (rule.Jump(-40, 3, jumpDoneRules),)
@@ -93,7 +94,7 @@ rightSideRect = pg.Rect(GameSize[0]-20, 0, 50, 600)
 
 class HouseOutsideScene(scenes.Game2dScene):
     def __init__(self):
-        scenes.Game2dScene.__init__(self, 'Outside')
+        scenes.Game2dScene.__init__(self, 'HouseOutside')
         house = self.addObject(base.Path(data_dir, 'House/house.jpg'))
         house.runRules([rule.SetSize(GameSize)])
 
@@ -104,7 +105,7 @@ class HouseOutsideScene(scenes.Game2dScene):
 #        elif dollGame.checkKeyDown(event, pg.K_LEFT):
         else:   # Handle timer
             if dollGame.activeObject.touchesRect(leftSideRect):
-                sceneDirector.showScene('Airport')
+                sceneDirector.showScene('City')
 
     def enterScene(self):
         scenes.Game2dScene.enterScene(self)
@@ -114,6 +115,8 @@ class HouseOutsideScene(scenes.Game2dScene):
         dollGame.girl.setPosition(x, BottomFloor)
         x, y = dollGame.boy.getPosition()
         dollGame.boy.setPosition(x, BottomFloor)
+        x, y = dollGame.activeObject.getPosition()
+        dollGame.activeObject.runRules([rule.SetPosition(GameSize[0]*1/2, y)])
 
 insideXScale = 1000/230
 insideStairsRect = pg.Rect(65*insideXScale, 0, (80-65)*insideXScale, 600)
@@ -135,7 +138,7 @@ class HouseInsideDownstairsScene(scenes.Game2dScene):
     def checkEvent(self, event) -> None:
         if dollGame.checkKeyDown(event, pg.K_UP):
             if dollGame.activeObject.touchesRect(insideDoorRect):
-                sceneDirector.showScene('Outside')
+                sceneDirector.showScene('HouseOutside')
             elif dollGame.activeObject.touchesRect(insideStairsRect):
                 sceneDirector.showScene('InsideUpstairs')
                 x, y = dollGame.activeObject.getPosition()
@@ -172,12 +175,44 @@ class AirportScene(scenes.Game2dScene):
     def enterScene(self):
         scenes.Game2dScene.enterScene(self)
         dollGame.activeObject.runRules([rule.PlaySound('doll-data/trumpets.ogg')])
+        x, y = dollGame.activeObject.getPosition()
+        dollGame.activeObject.runRules([rule.SetPosition(GameSize[0]*1/2, y)])
 
     def checkEvent(self, event) -> None:
 #        if dollGame.checkKeyDown(event, pg.K_RIGHT):
         # For any event like timer, check  the rectangle.
             if dollGame.activeObject.touchesRect(rightSideRect):
-                sceneDirector.showScene('Outside')
+                sceneDirector.showScene('City')
+
+class CityScene(scenes.Game2dScene):
+    def __init__(self):
+        scenes.Game2dScene.__init__(self, 'City')
+        city = self.addObject(base.Path('city-data', 'city-1000x600.jpg'))
+        city.runRules([rule.SetSize(GameSize)])
+        cityFore = self.addObject(base.Path('city-data', 'city-1000x600-fore.png'))
+        cityFore.runRules([rule.SetSize(GameSize)])
+        cityFore.setLayer(2)
+
+    def enterScene(self):
+        scenes.Game2dScene.enterScene(self)
+        dollGame.activeObject.runRules([rule.PlaySound('doll-data/trumpets.ogg')])
+        x, y = dollGame.activeObject.getPosition()
+        dollGame.activeObject.runRules([rule.SetPosition(GameSize[0]*1/2, y)])
+        dollGame.boy.runRules([rule.SetSize(100, 200)])
+        dollGame.girl.runRules([rule.SetSize(100, 200)])
+
+    def leaveScene(self):
+        scenes.Game2dScene.leaveScene(self)
+        dollGame.girl.runRules([rule.SetSize(100, NormalPlayerHeight)])
+        dollGame.boy.runRules([rule.SetSize(100, NormalPlayerHeight)])
+
+    def checkEvent(self, event) -> None:
+#        if dollGame.checkKeyDown(event, pg.K_RIGHT):
+        # For any event like timer, check  the rectangle.
+            if dollGame.activeObject.touchesRect(rightSideRect):
+                sceneDirector.showScene('HouseOutside')
+            elif dollGame.activeObject.touchesRect(leftSideRect):
+                sceneDirector.showScene('Airport')
 
 
 def main():
@@ -186,8 +221,8 @@ def main():
        a loop until the function returns."""
 
     sceneDirector.addScenes([HouseOutsideScene(), HouseInsideDownstairsScene(),
-        HouseInsideUpstairsScene(), AirportScene()])
-    sceneDirector.showScene('Outside')
+        HouseInsideUpstairsScene(), CityScene(), AirportScene()])
+    sceneDirector.showScene('HouseOutside')
 
     dollGame.addObjects(sceneDirector.getObjects())
     # Set a timer event for every 1/4 second. This allows checkEvent to be
