@@ -29,18 +29,21 @@ class DollGame(game.Game2d):
 
         self.boy = obj.Object(base.Path(data_dir, 'Boy'))
         self.boy.setLayer(1)
+        self.boy.setAnimationSpeed(3)
         self.boy.setDirection(90)
         self.boy.runRules([rule.StopAnimation(), rule.SetPosition(100, BottomFloor),
             rule.SetSize(100, 300)])
 
         self.girl = obj.Object(base.Path(data_dir, 'Girl'))
         self.girl.setLayer(1)
+        self.girl.setAnimationSpeed(3)
         self.girl.setDirection(270)
         self.girl.runRules([rule.StopAnimation(), rule.SetPosition(500, BottomFloor),
             rule.SetSize(100, 300)])
 
         self.addObjects([self.keyText, self.boy, self.girl])
         self.activeObject = self.girl
+        self.moveSpeed = 10
 
     def checkEvent(self, event):
         if self.checkKeyDown(event, 'b'):
@@ -50,10 +53,10 @@ class DollGame(game.Game2d):
 
         elif self.checkKeyDown(event, pg.K_LEFT):
             setImageDirection(self.activeObject, pg.K_LEFT)
-            self.activeObject.updateRules([rule.MoveLeftRight(-20)])
+            self.activeObject.updateRules([rule.MoveLeftRight(-self.moveSpeed)])
         elif self.checkKeyDown(event, pg.K_RIGHT):
             setImageDirection(self.activeObject, pg.K_RIGHT)
-            self.activeObject.updateRules([rule.MoveLeftRight(20)])
+            self.activeObject.updateRules([rule.MoveLeftRight(self.moveSpeed)])
         elif self.checkKeyUp(event, pg.K_LEFT) or self.checkKeyUp(event, pg.K_RIGHT):
             self.activeObject.updateRules([rule.StopAnimation()])
 
@@ -192,12 +195,18 @@ class CityScene(scenes.Game2dScene):
         cityFore = self.addObject(base.Path('city-data', 'city-1000x600-fore.png'))
         cityFore.runRules([rule.SetSize(GameSize)])
         cityFore.setLayer(2)
+        self.car = self.addObject(base.Path('city-data', 'car.png'))
+        self.car.runRules([rule.SetPosition(GameSize[0]*1/2, 280),
+            rule.SetSize(int(600*.7), int(217*.7))])
 
     def enterScene(self):
         scenes.Game2dScene.enterScene(self)
+
         dollGame.activeObject.runRules([rule.PlaySound('doll-data/trumpets.ogg')])
         x, y = dollGame.activeObject.getPosition()
         dollGame.activeObject.runRules([rule.SetPosition(GameSize[0]*1/2, y)])
+        self.savedActiveObject = dollGame.activeObject
+
         dollGame.boy.runRules([rule.SetSize(100, 200)])
         dollGame.girl.runRules([rule.SetSize(100, 200)])
 
@@ -205,14 +214,21 @@ class CityScene(scenes.Game2dScene):
         scenes.Game2dScene.leaveScene(self)
         dollGame.girl.runRules([rule.SetSize(100, NormalPlayerHeight)])
         dollGame.boy.runRules([rule.SetSize(100, NormalPlayerHeight)])
+        dollGame.activeObject = self.savedActiveObject
 
     def checkEvent(self, event) -> None:
-#        if dollGame.checkKeyDown(event, pg.K_RIGHT):
-        # For any event like timer, check  the rectangle.
+        if dollGame.checkKeyDown(event, 'c'):
+            dollGame.activeObject = self.car
+        elif dollGame.activeObject != self.car:
+            # For any event like timer, check  the rectangle.
             if dollGame.activeObject.touchesRect(rightSideRect):
                 sceneDirector.showScene('HouseOutside')
             elif dollGame.activeObject.touchesRect(leftSideRect):
                 sceneDirector.showScene('Airport')
+            elif dollGame.activeObject == self.car:
+                dollGame.moveSpped = 10
+            else:
+                dollGame.moveSpeed = 20
 
 
 def main():
@@ -241,7 +257,7 @@ def main():
                 going = False
             elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                 going = False
-        dollGame.update(5)
+        dollGame.update(30)
     pg.quit()
 
 def setImageDirection(obj, keyDirection):

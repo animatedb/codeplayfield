@@ -11,6 +11,7 @@ class Object(pg.sprite.Sprite):
     def __init__(self, filePattern:Union[List, str]):
         """ filePattern can be a filename or a directory of images. """
         pg.sprite.Sprite.__init__(self)  # call Sprite intializer
+        self.filePattern = filePattern
         self.setImages(filePattern)
         self.setPosition(0, 0) # Default to known position
         self.showImage(True)
@@ -19,9 +20,16 @@ class Object(pg.sprite.Sprite):
         self.imageRotation = 0
         self.imageSize = base2d.MainGame.getSize()        # For default size.
         self.imageIndex = 0
+        # inc of 1 means increment every game loop.
+        # 4 means every 4th game loop
         self.animationIncrement = 1
+        self.animationIncrementCounter = 0
+        self.allowAnimation = True
         self.rules = []
         self.rect = self.images[0].get_rect()
+
+    def __str__(self):
+        return self.filePattern
 
     def getSidePos(self, objSide:base2d.ObjectSide):
         if objSide == base2d.ObjectSide.Left:
@@ -146,9 +154,14 @@ class Object(pg.sprite.Sprite):
         return self._layer
 
     def update(self) -> None:
-        self.imageIndex += self.animationIncrement
-        if self.imageIndex >= len(self.images):
-             self.imageIndex = 0
+        if self.allowAnimation:
+            if self.animationIncrementCounter >= self.animationIncrement - 1:
+                self.imageIndex += 1
+                self.animationIncrementCounter = 0
+            else:
+                self.animationIncrementCounter += 1
+            if self.imageIndex >= len(self.images):
+                 self.imageIndex = 0
         self.image = self.images[self.imageIndex]
         for rule in self.rules:
             rule.update()
@@ -161,14 +174,20 @@ class Object(pg.sprite.Sprite):
     def getImageIndex(self) -> int:
         return self.imageIndex
 
+    # 1 is fastest. Increments the image index every time through
+    # the game loop. 2 means every other time through the loop.
+    # 3 means every 3rd time, etc.
+    def setAnimationSpeed(self, animationIncrement:int) -> None:
+        self.animationIncrement = animationIncrement
+
     def stopAnimation(self):
         self.runAnimation(False)
 
     def runAnimation(self, on=True):
         if on:
-            self.animationIncrement = 1
+            self.allowAnimation = True
         else:
-            self.animationIncrement = 0
+            self.allowAnimation = False
             self.imageIndex = 0     # Set to first image in animation when stopped.
 
     def flipX(self):
