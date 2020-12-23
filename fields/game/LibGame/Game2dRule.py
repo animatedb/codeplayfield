@@ -303,7 +303,9 @@ class PlaySound(Rule):
         self.sound = base2d.LoadSound(filepath)
 
     def update(self):
-        self.sound.play()
+        while pg.mixer.get_busy():
+            pg.time.delay(100)
+        pg.mixer.Sound.play(self.sound)
 
 class MoveLeftRightToLimits(Rule):
     """

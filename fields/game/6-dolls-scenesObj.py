@@ -202,7 +202,6 @@ class CityScene(scenes.Game2dScene):
     def enterScene(self):
         scenes.Game2dScene.enterScene(self)
 
-        dollGame.activeObject.runRules([rule.PlaySound('doll-data/trumpets.ogg')])
         x, y = dollGame.activeObject.getPosition()
         dollGame.activeObject.runRules([rule.SetPosition(GameSize[0]*1/2, y)])
         self.savedActiveObject = dollGame.activeObject
