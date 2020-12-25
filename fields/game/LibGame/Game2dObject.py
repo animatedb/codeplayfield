@@ -216,6 +216,7 @@ class ObjectText:
         surface, rect = self.font.render(text, (0,0,0), (0xff,0xff,0xff))
         screen.images[0].blit(surface, (x, y))
 
+# This displays text that shows the game score as a number.
 class ObjectScore(ObjectText):
     def __init__(self, screen, x, y, fontSize=12):
         ObjectText.__init__(self, fontSize)
@@ -224,6 +225,6 @@ class ObjectScore(ObjectText):
         self.score = 0
         self.screen = screen
 
-    def add(self):
-        self.score += 1
+    def add(self, amount:int=1):
+        self.score += amount
         self.drawText(self.screen, str(self.score), self.x, self.y)
