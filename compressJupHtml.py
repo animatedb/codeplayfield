@@ -67,6 +67,7 @@ def getStyle():
 
 # Execute means that the code should be executed in Jupyter before exporting as html.
 compressJupHtml('Flow')     # Execute
+compressJupHtml('Functions')# Execute
 compressJupHtml('Images')       # No execute
 compressJupHtml('Loops')    # Execute
 compressJupHtml('Sound')        # No execute - No code yet
