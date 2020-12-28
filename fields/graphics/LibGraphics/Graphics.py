@@ -1,6 +1,9 @@
 from LibGraphics.graphics import *
 from typing import Any, List, Optional
 
+# Create a window of some size.
+# windowSizeX is the window size in the horizontal/sideways direction.
+# windowSizeY is the window size in the vertical/up down direction.
 def CreateWindow(windowSizeX:int, windowSizeY:int, windowTitle:Optional[str]=None,
     backgroundColor:Optional[str]=None) -> GraphWin:
     if windowTitle == None:
@@ -11,6 +14,18 @@ def CreateWindow(windowSizeX:int, windowSizeY:int, windowTitle:Optional[str]=Non
     # Set so that a bigger Y is lower on the screen, this is the default.
 #    window.setCoords(0, windowSizeY, windowSizeX, 0)
     return window
+
+# Draw an image.
+# pointX and pointY say where to put image in the window.
+# pointX is the window position in the horizontal/sideways direction.
+# pointY is the window position in the vertical/up down direction.
+# The top left corner of the image is placed at the pointX and pointY.
+def DrawImage(window:GraphWin, pointX:int, pointY:int, filename:str) -> None:
+    image = Image(Point(pointX, pointY), filename)
+    x = image.getWidth()
+    y = image.getHeight()
+    image.move(x/2, y/2)
+    image.draw(window)
 
 def DrawPoint(window:GraphWin, point:Any) -> None:
     point.draw(window)
