@@ -12,7 +12,7 @@ def main():
     text = DrawText(window, window.getWidth()/2, 320, 'Click at three places',
         lineColor='red')
 
-    # Get and draw three vertices of triangle
+    # Get and draw three points of a triangle
     p1 = getMouseClick(window)
     DrawPoint(window, p1)
     p2 = getMouseClick(window)

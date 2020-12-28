@@ -27,7 +27,9 @@ def DrawImage(window:GraphWin, pointX:int, pointY:int, filename:str) -> None:
     image.move(x/2, y/2)
     image.draw(window)
 
-def DrawPoint(window:GraphWin, point:Any) -> None:
+def DrawPoint(window:GraphWin, pointX:int, pointY:int, color:str='black') -> None:
+    point = Point(pointX, pointY)
+    point.setFill(color)
     point.draw(window)
 
 def DrawCircle(window:GraphWin, circleCenterX:int, circleCenterY:int, radius:int,
