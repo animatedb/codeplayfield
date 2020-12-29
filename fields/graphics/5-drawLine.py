@@ -1,5 +1,4 @@
-# From http://anh.cs.luc.edu/handsonPythonTutorial/graphics.html
-'''A simple graphics example constructs a face from basic shapes.
+'''Draw lines using loops.
 '''
 
 from LibGraphics.Graphics import *

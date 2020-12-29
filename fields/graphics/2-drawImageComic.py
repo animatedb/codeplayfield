@@ -1,6 +1,7 @@
 # To run this program
 # Change directory to teach/drawing.
 # Enter "python3 1-drawImage.py"
+# Or "python 1-drawImage.py"
 
 # Load a library that allows drawing and images.
 from LibGraphics.Graphics import *
