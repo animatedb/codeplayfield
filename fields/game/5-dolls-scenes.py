@@ -28,8 +28,8 @@ def main():
     dollGame = game.Game2d('Scene', gameSize)
 
     # First image is the outside of the house.
-    house = obj.Object(base.Path(data_dir, 'House'))
-    house.runRules([rule.StopAnimation(), rule.SetSize(gameSize)])
+    scenes = obj.Object(base.Path(data_dir, 'House'))
+    scenes.runRules([rule.StopAnimation(), rule.SetSize(gameSize)])
 
     # Top and bottom of doors and stairs don't really matter for this game, so just
     # make them full height of screen.
@@ -48,7 +48,7 @@ def main():
     keyText = obj.Object(base.Path(data_dir, 'keytext-scene.png'))
     keyText.runRules([rule.SetPosition(10, 10), rule.SetSize(350, 13)])
 
-    chair = obj.Object(base.Path(data_dir, 'chair.png'))
+    chair = obj.Object(base.Path(data_dir, 'chair200x175.png'))
     chair.showImage(False)
     chair.setPosition(700, 129)
     chair.setSize(180, 170)
@@ -65,7 +65,7 @@ def main():
     girl.runRules([rule.StopAnimation(), rule.SetPosition(500, BottomFloor),
         rule.SetSize(100, 300)])
 
-    dollGame.addObjects([house, keyText, chair, boy, girl])
+    dollGame.addObjects([scenes, keyText, chair, boy, girl])
 
     # Main Loop
     activeObject = girl

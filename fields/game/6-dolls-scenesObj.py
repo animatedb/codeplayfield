@@ -125,18 +125,27 @@ insideXScale = 1000/230
 insideStairsRect = pg.Rect(65*insideXScale, 0, (80-65)*insideXScale, 600)
 insideDoorRect = pg.Rect(27*insideXScale, 0, (58-27)*insideXScale, 600)
 
+def addChair(scene):
+    chair = scene.addObject(base.Path(data_dir, 'chair200x175.png'))
+    chair.showImage(False)
+    chair.setPosition(700, 129)
+    chair.setSize(180, 170)
+    chair.setLayer(2)   # The chair will be drawn on top of any lower layer object.
+    chair.flipX()
+
+def addDresser(scene):
+    dresser = scene.addObject(base.Path(data_dir, 'dresser300x240.jpg'))
+    dresser.showImage(False)
+    dresser.setPosition(70, 123)
+    dresser.setSize(180, 170)
+
 class HouseInsideDownstairsScene(scenes.Game2dScene):
     def __init__(self):
         scenes.Game2dScene.__init__(self, 'InsideDownstairs')
         house = self.addObject(base.Path(data_dir, 'House/houseInside1.jpg'))
         house.runRules([rule.SetSize(GameSize)])
-
-        chair = self.addObject(base.Path(data_dir, 'chair.png'))
-        chair.showImage(False)
-        chair.setPosition(700, 129)
-        chair.setSize(180, 170)
-        chair.setLayer(2)   # The chair will be drawn on top of any lower layer object.
-        chair.flipX()
+        chair = addChair(self)
+        dresser = addDresser(self)
 
     def checkEvent(self, event) -> None:
         if dollGame.checkKeyDown(event, pg.K_UP):
@@ -152,13 +161,8 @@ class HouseInsideUpstairsScene(scenes.Game2dScene):
         scenes.Game2dScene.__init__(self, 'InsideUpstairs')
         house = self.addObject(base.Path(data_dir, 'House/houseInside1.jpg'))
         house.runRules([rule.SetSize(GameSize)])
-
-        chair = self.addObject(base.Path(data_dir, 'chair.png'))
-        chair.showImage(False)
-        chair.setPosition(700, 129)
-        chair.setSize(180, 170)
-        chair.setLayer(2)   # The chair will be drawn on top of any lower layer object.
-        chair.flipX()
+        chair = addChair(self)
+        dresser = addDresser(self)
 
     def checkEvent(self, event) -> None:
         if dollGame.checkKeyDown(event, pg.K_DOWN):
