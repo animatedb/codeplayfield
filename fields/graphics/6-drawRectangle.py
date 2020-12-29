@@ -70,6 +70,8 @@ def main():
     # Draw a green rectangle 30 to the right of the top left of the previous rectangle
     drawRectangle(window, 20+30, 10, 25, 15, 'green')
 
+    drawFilledRectangle(window, 20+30, 10+30, 25, 15, 'yellow')
+
     WaitForMouseClick(window)
     CloseWindow(window)
 
@@ -87,6 +89,12 @@ def drawRectangle(window, x, y, xSize, ySize, color):
     drawLine(window, x, y, 0, 1, ySize, color)
     drawLine(window, x, y+ySize, 1, 0, xSize, color)
     drawLine(window, x+xSize, y, 0, 1, ySize, color)
+
+def drawFilledRectangle(window, xPos, yPos, xSize, ySize, color):
+    # range stops before the last number, so add 1.
+    for x in range(xPos, xPos+xSize+1):
+        for y in range(yPos, yPos+ySize+1):
+            DrawPoint(window, x, y, color)
 
 main()
 
