@@ -62,7 +62,7 @@ def find_broken_links(domainToSearch, url, parentUrl):
 def CheckLinks():
     # sys.argv[1]
 #    url = 'https://github.com/animatedb/codeplayfield'
-    url = 'https://animatedb.github.io/codeplayfield/Overview.html'
+    url = 'https://animatedb.github.io/codeplayfield/docs/Overview.html'
     find_broken_links(urlparse(url).netloc, url, "")
 
     print("\n--- DONE! ---\n")
