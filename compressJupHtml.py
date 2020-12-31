@@ -22,6 +22,9 @@ def compressJupHtml(filename:str) -> None:
                     copy = False
                 if copy:
                     line = line.replace('&#182;', '')
+                    if 'href' in line:
+                        line = line.replace('.ipynb', '.html'
+                            ).replace('./jupyter/', './docs/')
                     outFile.write(line)
                 if '<!-- End of mathjax configuration' in line:
                     copy = True
@@ -75,4 +78,5 @@ compressJupHtml('Problems')    # Execute
 compressJupHtml('Sound')        # No execute - No code yet
 compressJupHtml('Steps')        # No execute - Has code, but no results
 compressJupHtml('Storage')  # Execute
+compressJupHtml('Types')  # Execute
 compressJupHtml('Values')   # Execute
