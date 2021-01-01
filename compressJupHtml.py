@@ -72,6 +72,7 @@ def getStyle():
 compressJupHtml('Editing')      # No execute
 compressJupHtml('Flow')     # Execute
 compressJupHtml('Functions')# Execute
+compressJupHtml('Graphs')   # Execute
 compressJupHtml('Images')       # No execute
 compressJupHtml('Loops')    # Execute
 compressJupHtml('Problems')    # Execute
